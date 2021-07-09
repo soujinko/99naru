@@ -1,0 +1,23 @@
+{
+  "name": "99naru",
+  "version": "0.0.1",
+  "description": "Hanghae99 w6 miniproject",
+  "main": "/backend/index.js",
+  "scripts": {
+    "start": "node /backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seungbin0508/99naru.git"
+  },
+  "keywords": [
+    "SNS",
+    "chat"
+  ],
+  "author": "고수진 김승빈 오일교 이경원 최지혁",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seungbin0508/99naru/issues"
+  },
+  "homepage": "https://github.com/seungbin0508/99naru#readme"
+}
