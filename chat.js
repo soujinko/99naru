@@ -1,5 +1,4 @@
 const socketIo = require("socket.io");
-const socketIo = require("socket.io");
 const io = socketIo(http);
 const moment = require("moment");
 require("moment-timezone");
@@ -8,16 +7,20 @@ moment.tz.setDefault("Asia/Seoul");
 io.on("connection", (socket) => {
   const currentDate = moment().format("YYYY-MM-DD HH:mm:ss"); //현재 시간
   const joinedId = [];
+  const userSocketId = socket.id;
+  const currentOn = [];
 
   socket.on("join", ({ userInfo }) => {
     const nickname = userInfo.nickname;
-    const userSocketId = socket.id;
+    currentOn.push(nickname);
 
-    if (ids.indexOf(userSocketId) == -1) {
-      ids.push(userSocketId);
+    if (joinedId.indexOf(userSocketId) == -1) {
+      joinedId.push(userSocketId);
       socket.emit("enterUser", `${nickname}님이 입장하셨습니다.`);
     }
   });
+
+  io.emit("currentOn", currentOn); // 현재 접속자 리스트
 
   socket.on("sendMsg", (data) => {
     const message = {
@@ -28,21 +31,17 @@ io.on("connection", (socket) => {
     io.emit("receiveMsg", message);
   });
 
-  const currentOn = [];
-  currentOn.push(nickname);
-
-  io.emit("currentOn", currentOn); // 현재 접속자 리스트
-
   // 게시물 포스팅 알람
-  socket.on("posting", (data) => {
+  socket.on("posting", (giveNickname) => {
     const post = {
-      nickname: data.nickname,
+      nickname: giveNickname,
       date: currentDate,
     };
     io.emit("notificationAlarm", post);
   });
 
   socket.on("disconnect", () => {
-    ids.splice(ids.indexOf(userSocketId), 1);
+    joinedId.splice(joinedId.indexOf(userSocketId), 1);
+    currentOn.splice(currentOn.indexOf(nickname), 1);
   });
 });
