@@ -1,6 +1,4 @@
 const socketIo = require("socket.io");
-const server = require('./backend/index')
-const io = socketIo(server);
 
 const currentOn = [];
 io.on("connection", (socket) => {
@@ -37,16 +35,18 @@ io.on("connection", (socket) => {
 
   //댓글 작성 알람
   socket.on("writingComment", (post, comment) => {
-      const postUser = {
-          nickname = post.nickname
-      };
-      const commentUser = {
-        comment = comment.comment,  
-        nickname = comment.nickname,
-        date: currentDate
-      };
-      socketid = sds;
-      socket.broadcast.to(socketid).emit("commentNotification", postUser, commentUser) //특정 socketid에게만 전송
+    const postUser = {
+      nickname: post.nickname,
+    };
+    const commentUser = {
+      comment: comment.comment,
+      nickname: comment.nickname,
+      date: currentDate,
+    };
+    socketid = sds;
+    socket.broadcast
+      .to(socketid)
+      .emit("commentNotification", postUser, commentUser); //특정 socketid에게만 전송
   });
 
   //로그아웃 했을경우
@@ -58,3 +58,5 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {});
 });
+
+module.exports = socketIo;
