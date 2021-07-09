@@ -5,7 +5,15 @@ const router = express.Router()
 
 router.put('/:postId', (req, res, next) => {
 	const { postId } = req.params
-	//Post.findByIdAndUpdate()
+	const { text } = req.body
+	Post.findByIdAndUpdate(postId, text).exec().then(() => {
+		res.sendStatus(200)
+	}).catch(err => {
+		console.error(err)
+		res.send(400).json({
+			errorMessage: '게시글 수정을 실패했습니다.'
+		})
+	})
 })
 router.delete('/:postId', (req, res, next) => {
 	const { postId } = req.params
