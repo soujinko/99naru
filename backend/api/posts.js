@@ -40,9 +40,10 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
 	//todo: load user info from res.locals created by token
 	const { text } = req.body
-	const userId = null
-	Post.create({ text, userId }).then(() => {
-		res.header('Access-Control-Allow-Origin', '*')
+	//const userId = 'test'
+	console.log(text)
+	Post.create(req.body).then(result => {
+		console.log(result)
 		res.sendStatus(201)
 	}).catch(err => {
 		console.error(err)
