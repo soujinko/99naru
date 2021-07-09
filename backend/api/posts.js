@@ -7,6 +7,7 @@ router.put('/:postId', (req, res, next) => {
 	const { postId } = req.params
 	const { text } = req.body
 	Post.findByIdAndUpdate(postId, text).exec().then(() => {
+		res.header("Access-Control-Allow-Origin", "*")
 		res.sendStatus(200)
 	}).catch(err => {
 		console.error(err)
