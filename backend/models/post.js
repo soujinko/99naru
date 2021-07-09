@@ -6,11 +6,11 @@ const postSchema = new mongoose.Schema({
 		type: String,
 		require: true
 	},
-	userId: {
-		type: mongoose.Schema.Types.ObjectId,
-		required: true,
-		ref: 'User'
-	},
+	// userId: {
+	// 	type: mongoose.Schema.Types.ObjectId,
+	// 	required: true,
+	// 	ref: 'User'
+	// },
 	created_at: {
 		type: Date,
 		default: Date.now
@@ -24,9 +24,9 @@ const postSchema = new mongoose.Schema({
 	likedUsers: [User] // count the number of liked users by implementing a method
 	 */
 })
-//
-// postSchema.method('getLikedUsersNumber',function(doc) {
-// 	return doc.likedUsers.length
-// })
+
+postSchema.method('getLikedUsersNumber',function(doc) {
+	return doc.likedUsers.length
+})
 
 export default mongoose.model('Post', postSchema)
