@@ -2,8 +2,7 @@ import express from 'express'
 
 const router = express.Router()
 
-// multer, joi 설치
-const multer  = require('multer')
+// joi 설치
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middlewares/auth-middleware");
