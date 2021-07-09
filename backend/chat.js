@@ -9,6 +9,11 @@ io.on("connection", (socket) => {
   socket.on("join", ({ token }) => {
     //res.locals; //미들웨어에서 토큰으로 체크하고 유저정보 받아오기
 
+    // const socketId = {
+    //     id : token,           //socket.id랑 유저아이디랑 연결
+    //     sId : socket.id
+    //   }
+
     if (currentOn.indexOf(nickname) == -1) {
       currentOn.push(nickname);
       socket.emit("enterUser", `${nickname}님이 입장하셨습니다.`);
@@ -38,7 +43,7 @@ io.on("connection", (socket) => {
   //댓글 작성 알람
   socket.on("writingComment", (post, comment) => {
       const postUser = {
-          nickname = post.nickname
+          nickname : post.nickname
       };
       const commentUser = {
         comment : comment.comment,  
@@ -56,8 +61,9 @@ io.on("connection", (socket) => {
     io.emit("exitUser", `${nickname}님이 나가셨습니다.`);
   });
 
-  socket.on("disconnect", () => {});
-});
+  socket.on("disconnect", () => {});// disconnect할때 해당 socket.id가 사라지는지 검사
+});                                  // 만약 그게 사라진다면 유저아이디랑 연결된 id 없애면 됌.
+
 
 export default io
 
