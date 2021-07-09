@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import Comment from './comment.js'
 
 const postSchema = new mongoose.Schema({
 	text: {
@@ -17,6 +18,7 @@ const postSchema = new mongoose.Schema({
 	comments: [
 	// Subdocument can hold up to 16MB, which is about 68,000 100-character comments
 	// Thus it's safe to use here
+		Comment
 	]
 })
 
