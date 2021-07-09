@@ -6,7 +6,7 @@ import commentsRouter from './comments.js'
 const router = express.Router()
 
 router.use(multer().none())
-router.use('/posts', postsRouter)
-router.use('/comments', commentsRouter)
+router.use('/api/posts', postsRouter)
+router.use('/api/comments', commentsRouter)
 
 export default router
