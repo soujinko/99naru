@@ -15,11 +15,11 @@ const postSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	comments: [
-	// Subdocument can hold up to 16MB, which is about 68,000 100-character comments
-	// Thus it's safe to use here
-		Comment
-	]
+	// comments: [
+	// // Subdocument can hold up to 16MB, which is about 68,000 100-character comments
+	// // Thus it's safe to use here
+	// 	Comment
+	// ]
 })
 
 export default mongoose.model('Post', postSchema)
