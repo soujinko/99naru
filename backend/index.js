@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import router from './api/index.js'
 import cors from 'cors'
 import multer from 'multer'
+import io from './chat'
 import './models/index.js'
 
 dotenv.config()
