@@ -2,6 +2,7 @@ import express from "express";
 import http from "http";
 import dotenv from "dotenv";
 import router from "./api/index.js";
+import io from "./chat";
 
 dotenv.config();
 const app = express();
