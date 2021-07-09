@@ -7,7 +7,7 @@ const connect = () => {
 }
 
 mongoose.connect('mongodb://localhost:27017/admin', {
-	dbName: 'naru',
+	dbName: 'board2',
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 }, err => {
