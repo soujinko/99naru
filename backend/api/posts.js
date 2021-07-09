@@ -5,9 +5,18 @@ const router = express.Router()
 
 router.put('/:postId', (req, res, next) => {
 	const { postId } = req.params
+	//Post.findByIdAndUpdate()
 })
 router.delete('/:postId', (req, res, next) => {
 	const { postId } = req.params
+	Post.findByIdAndDelete(postId).exec().then(() => {
+		res.sendStatus(200)
+	}).catch(err => {
+		console.error(err)
+		res.send(400).json({
+			errorMessage: '게시글 삭제를 실패했습니다.'
+		})
+	})
 })
 router.get('/', (req, res, next) => {
 	Post.find().populate('comments').exec().then(posts => {
