@@ -25,8 +25,8 @@ const postSchema = new mongoose.Schema({
 	 */
 })
 
-postSchema.method('getLikedUsersNumber',function(doc) {
-	return doc.likedUsers.length
-})
+// postSchema.method('getLikedUsersNumber',function(doc) {
+// 	return doc.likedUsers.length
+// })
 
 export default mongoose.model('Post', postSchema)
