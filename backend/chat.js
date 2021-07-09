@@ -1,6 +1,6 @@
 const socketIo = require("socket.io");
-const sever = require('./backend/index')
-const io = socketIo(sever);
+const server = require('./backend/index')
+const io = socketIo(server);
 
 const currentOn = [];
 io.on("connection", (socket) => {
