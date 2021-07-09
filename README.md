@@ -11,7 +11,7 @@ https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
     * 이경원 : chat and socket.io
 * Frontend
     * 오일교
-    * 최성수
+    * 최지혁
     
     
 ### API
