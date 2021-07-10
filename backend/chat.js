@@ -1,9 +1,7 @@
-import { Server } from "socket.io";
-import server from './index.js'
+import { io } from './index.js'
 import jwt from 'jsonwebtoken'
 import User from './models/user.js'
 
-const io = new Server(server)
 
 const currentOn = [];
 
