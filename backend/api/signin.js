@@ -5,7 +5,7 @@ import User from '../models/user'
 const router = express.Router();
 
 // 회원가입 검사 및 등록
-router.post("/", multer.none(), async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { loginId, password } = req.body;
     const user = await User.findOne({
