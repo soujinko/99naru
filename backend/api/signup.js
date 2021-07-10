@@ -1,8 +1,7 @@
 import express from "express";
-
+import Joi from 'joi'
+import User from '../models/user.js'
 const router = express.Router();
-const Joi = require("joi");
-const User = require("../models/user");
 
 const postUserschema = Joi.object({
   nickname: Joi.string()
