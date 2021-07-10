@@ -6,10 +6,7 @@
   "scripts": {
     "start": "npx nodemon ./backend/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/seungbin0508/99naru.git"
-  },
+  "repository": "git+https://github.com/seungbin0508/99naru.git",
   "keywords": [
     "SNS",
     "chat"
@@ -32,5 +29,6 @@
     "npm": "^7.19.1",
     "socket.io": "^4.1.2"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {}
 }

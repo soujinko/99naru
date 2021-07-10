@@ -1,6 +1,6 @@
 import express from "express";
-import jwt from 'jsonwebtoken'
-import User from '../models/user.js'
+import jwt from "jsonwebtoken";
+import User from "../models/user.js";
 
 const router = express.Router();
 
@@ -23,8 +23,9 @@ router.post("/", async (req, res) => {
     const options = {
       expiresIn: "5m",
     };
+
     const token = jwt.sign(userInfo, process.env.SECRET_KEY, options);
-    res.send({ token })
+    res.send({ token });
   } catch (err) {
     console.error(err);
     res.status(400).send({
