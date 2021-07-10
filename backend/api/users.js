@@ -1,11 +1,8 @@
 import express from 'express'
-
+import Joi from 'joi'
+import jwt from 'jsonwebtoken'
+import authMiddleware from '../middlewares/auth-middleware'
 const router = express.Router()
-
-// joi 설치
-const Joi = require("joi");
-const jwt = require("jsonwebtoken");
-const authMiddleware = require("../middlewares/auth-middleware");
 
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
