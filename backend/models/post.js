@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { commentSchema } from './comment.js'
+import { userSchema } from './user.js'
 
 const postSchema = new mongoose.Schema({
 	text: {
@@ -15,18 +16,11 @@ const postSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	comments: [
-		// Subdocument can hold up to 16MB, which is about 68,000 100-character comments
-		// Thus it's safe to use here
-		commentSchema
-	]
-	/*
-	likedUsers: [User] // count the number of liked users by implementing a method
-	 */
+	// Subdocument can hold up to 16MB, which is about 68,000 100-character comments
+	// Thus it's safe to use here
+	comments: [commentSchema],
+	// count the number of liked users by implementing a method
+	likedUsers: [userSchema]
 })
-//
-// postSchema.method('getLikedUsersNumber',function(doc) {
-// 	return doc.likedUsers.length
-// })
 
 export default mongoose.model('Post', postSchema)
