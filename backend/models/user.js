@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
-const userSchema = new Schema({
+export const userSchema = new Schema({
   loginId: {
     type: String,
     required: true,
