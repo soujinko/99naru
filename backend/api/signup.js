@@ -34,8 +34,7 @@ router.post("/", async (req, res) => {
       password,
       intro,
     });
-    res.status(201).send({ message: "회원가입을 축하합니다." });
-    return;
+    return res.status(201).send({ message: "회원가입을 축하합니다." })
   } catch (err) {
     console.error(err);
     res
