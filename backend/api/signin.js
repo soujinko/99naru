@@ -1,8 +1,8 @@
 import express from "express";
+import jwt from 'jsonwebtoken'
+import User from '../models/user'
 
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-const User = require("../models/user");
 
 // 회원가입 검사 및 등록
 router.post("/", multer.none(), async (req, res) => {
