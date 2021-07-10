@@ -46,7 +46,7 @@ try {
     return res.status(201).send({message: '회원가입을 축하합니다.'})
 } catch (err) {
 	//todo 여기서 err의 message만 따로 뺀 이유는 무엇인가요?
-    error = err.message;
+    const error = err.message;
     console.log(error);
     res.status(400).send({message: '회원가입 양식이 올바르지 않습니다.'})
 }
