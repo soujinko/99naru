@@ -1,9 +1,11 @@
 import { io } from './index.js'
+import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
 import User from './models/user.js'
 
 
 const currentOn = [];
+const currentOnUserInfo=[];
 
 io.on("connection", (socket) => {
   const currentDate = JSON.stringify(new Date());
@@ -13,21 +15,34 @@ io.on("connection", (socket) => {
     if (token === null) {
       return;
     }
-    const { userId } = jwt.verify(token, '키');
+    const { userId } = jwt.verify(token, process.env.SECRET_KEY);
     
     User.findById(userId)
     .then((user) => {
-      const userInfo = user 
-
+      const userInfo = user
+      const userSocketId = {      // 특정 닉네임에게만 보내는 이벤트를 위한 socket.id저장
+        nickname : userInfo.nickname,
+        socketId : socket.id
+      } 
+      
       if (currentOn.indexOf(userInfo.nickname) === -1) {  //유저아이디가 있으면 현재인원에추가안해줘도 됌
         currentOn.push(userInfo.nickname);
+        currentOnUserInfo.push(userSocketId);
         io.emit('enterUser', userInfo.nickname);
-        io.emit('currentOn', currentOn); // 현재 접속자 리스트
-      };
+        io.emit('currentOn', currentOn); // 현재 접속자 리스트 업데이트
+      
+      }else{                      // refresh 할때마다 socket.id가 바뀌므로 같이 업데이트 해주는작업
+        for (let i in currentOnUserInfo){ 
+          if (currentOnUserInfo[i].nickname === userInfo.nickname){
+            currentOnUserInfo[i].socketId = userSocketId.socketId
+          }
+        }
+      }
     });
   });
 
-  //메세지 주고받기
+
+  //메세지 주고받기(프론트: 보내는 유저info, 보내는 메세지)
   socket.on("sendMsg", (data) => {
     const message = {
       sendMsg: data.message,
@@ -37,7 +52,22 @@ io.on("connection", (socket) => {
     io.emit("receiveMsg", message);
   });
 
-  // 게시물 포스팅 알람
+  //귓속말(프론트: 보내는 유저info, 보내는 메세지, 받는 유저info)
+  socket.on("writingComment", (send, receive) => {
+    const sendUser = {
+        nickname : send.nickname,
+        sendMessage: send.message,
+        date: currentDate
+    };
+    for (let i in currentOnUserInfo){
+      if (currentOnUserInfo[i].nickname === receive.nickname){
+        const socketId = currentOnUserInfo[i].socketId;
+        socket.broadcast.to(socketId).emit("whisper", sendUser) //특정 socketid에게만 전송
+      }
+    }
+  });
+
+  // 게시물 포스팅 알람(프론트: 보내는 유저info)
   socket.on("posting", (giveNickname) => {
     const post = {
       nickname: giveNickname,
@@ -46,7 +76,7 @@ io.on("connection", (socket) => {
     io.emit("postNotification", post);
   });
 
-  //댓글 작성 알람
+  //댓글 작성 알람(프론트: 댓글 단 유저info, 댓글내용, 해당 게시물 유저info)
   socket.on("writingComment", (post, comment) => {
       const postUser = {
           nickname : post.nickname
@@ -56,8 +86,12 @@ io.on("connection", (socket) => {
         nickname : comment.nickname,
         date: currentDate
       };
-      // socketid = 찾기;
-      socket.broadcast.to(socketid).emit("commentNotification", postUser, commentUser) //특정 socketid에게만 전송
+      for (let i in currentOnUserInfo){
+        if (currentOnUserInfo[i].nickname === receive.nickname){
+          const socketId = currentOnUserInfo[i].socketId;
+          socket.broadcast.to(socketId).emit("commentNotification", postUser, commentUser) //특정 socketid에게만 전송
+      }
+    }
   });
 
   //로그아웃 했을경우
@@ -65,19 +99,29 @@ io.on("connection", (socket) => {
     if (token === null) {
       return;
     }
-    const { userId } = jwt.verify(token, '키');
+    const { userId } = jwt.verify(token, process.env.SECRET_KEY);
     
     User.findById(userId)
     .then((user) => {
       const userInfo = user;
-
+      
+      // 현재 접속중 배열에서 제거
       currentOn.splice(currentOn.indexOf(userInfo.nickname), 1);
+
+      // 현재 socket.id랑 연결되어있는 닉네임이 있는 배열에서 제거
+      for (let i in currentOnUserInfo){
+        if (currentOnUserInfo[i].nickname === userInfo.nickname){
+          currentOnUserInfo.splice(i,1)
+        }
+      }
       io.emit('exitUser', userInfo.nickname);
       });
   });
 
-  socket.on("disconnect", () => {});// disconnect할때 해당 socket.id가 사라지는지 검사
-});                                  // 만약 그게 사라진다면 유저아이디랑 연결된 id 없애면 됌.
+  socket.on("disconnect", () => {
+    console.log('나감');    // 브라우저를 끄거나 탭을 닫으면 disconnect 작동 X
+  });
+});                                  
 
 
 
