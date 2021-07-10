@@ -7,16 +7,15 @@ import axios from 'axios';
 
 function Main() {
   const dispatch = useDispatch();
-      
-  React.useEffect(() => {
-    axios.get('http://localhost:3000/api/posts', 
-  ).then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}, []);
+
+	React.useEffect(() => {
+		axios.get('http://localhost:3000/api/posts'
+		).then(response => {
+			console.log(response.data)
+		}).catch(error => {
+			console.error(error)
+		})
+	})
 
 
   return (
