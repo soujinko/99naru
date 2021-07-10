@@ -9,7 +9,7 @@ const currentOn = [];
 io.on("connection", (socket) => {
   const currentDate = JSON.stringify(new Date());
   io.emit('currentOn', currentOn); // (현재 접속자 리스트) 게시물 업데이트때문에 refresh 할일이 많아서 처음에 넣어줌.
-  
+                                  
   socket.on("join", ({ token }) => {
     if (token === null) {
       return;
@@ -20,7 +20,7 @@ io.on("connection", (socket) => {
     .then((user) => {
       const userInfo = user 
 
-      if (currentOn.indexOf(userInfo.nickname) == -1) {  //유저아이디가 있으면 현재인원에추가안해줘도 됌
+      if (currentOn.indexOf(userInfo.nickname) === -1) {  //유저아이디가 있으면 현재인원에추가안해줘도 됌
         currentOn.push(userInfo.nickname);
         io.emit('enterUser', userInfo.nickname);
         io.emit('currentOn', currentOn); // 현재 접속자 리스트
@@ -57,7 +57,7 @@ io.on("connection", (socket) => {
         nickname : comment.nickname,
         date: currentDate
       };
-      socketid = sds;
+      // socketid = 찾기;
       socket.broadcast.to(socketid).emit("commentNotification", postUser, commentUser) //특정 socketid에게만 전송
   });
 
