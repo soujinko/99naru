@@ -5,9 +5,11 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/user');
 
 const currentOn = [];
+
 io.on("connection", (socket) => {
   const currentDate = JSON.stringify(new Date());
-
+  io.emit('currentOn', currentOn); // (현재 접속자 리스트) 게시물 업데이트때문에 refresh 할일이 많아서 처음에 넣어줌.
+  
   socket.on("join", ({ token }) => {
     if (token === null) {
       return;
@@ -17,15 +19,10 @@ io.on("connection", (socket) => {
     User.findById(userId)
     .then((user) => {
       const userInfo = user 
-      const users = {
-        loginId : userInfo.id,          
-        nickname: userInfo.nickname,
-        socketId : socket.id
-      }; 
-      currentUsers.push(users);
-      if (currentOn.indexOf(users.nickname) == -1) {  //유저아이디가 있으면 현재인원에추가안해줘도 됌
-        currentOn.push(users.nickname);
-        io.emit('enterUser', users.nickname);
+
+      if (currentOn.indexOf(userInfo.nickname) == -1) {  //유저아이디가 있으면 현재인원에추가안해줘도 됌
+        currentOn.push(userInfo.nickname);
+        io.emit('enterUser', userInfo.nickname);
         io.emit('currentOn', currentOn); // 현재 접속자 리스트
       };
     });
@@ -65,12 +62,19 @@ io.on("connection", (socket) => {
   });
 
   //로그아웃 했을경우
-  socket.on("signOut", (token) => {
-    // 토큰 auth 해서 currentUsers에 있는 사람들중 해당 nickname이랑 맞는 사람 find
+  socket.on('signOut', (token) => {
+    if (token === null) {
+      return;
+    }
+    const { userId } = jwt.verify(token, '키');
+    
+    User.findById(userId)
+    .then((user) => {
+      const userInfo = user;
 
-    currentOn.splice(currentOn.indexOf(nickname), 1);
-    io.emit("currentOn", currentOn); // 현재 접속자 리스트 업데이트
-    io.emit("exitUser", `${nickname}님이 나가셨습니다.`);
+      currentOn.splice(currentOn.indexOf(userInfo.nickname), 1);
+      io.emit('exitUser', userInfo.nickname);
+      });
   });
 
   socket.on("disconnect", () => {});// disconnect할때 해당 socket.id가 사라지는지 검사
