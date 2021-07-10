@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 // 이메일 형식 체크하는 함수를 가져옵니다.
-import { emailCheck } from "../shared/common";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -18,11 +17,6 @@ const Signup = (props) => {
   const signup = () => {
     if (id === "" || pwd === "" || pwd_check === "" || user_name === "") {
       window.alert("아이디, 패스워드, 닉네임을 모두 입력해주세요!");
-      return;
-    }
-
-    if (!emailCheck(id)) {
-      window.alert("이메일 형식이 맞지 않습니다!");
       return;
     }
 

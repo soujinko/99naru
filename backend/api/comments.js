@@ -36,10 +36,11 @@ router.get('/', (req, res) => {
 	})
 })
 router.post('/', (req, res) => {
-	const { postId } = req.body
-	Comment.create(req.body).then(comment => {
+	const { postId, text } = req.body
+	Comment.create({postId, text}).then(comment => {
 		Post.findById(postId).exec().then(post => {
 			post.comments.push(comment)
+			return post.save()
 		})
 		res.sendStatus(201)
 	}).catch(err => {

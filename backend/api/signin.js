@@ -1,6 +1,6 @@
 import express from "express";
-import jwt from 'jsonwebtoken'
-import User from '../models/user.js'
+import jwt from "jsonwebtoken";
+import User from "../models/user.js";
 
 const router = express.Router();
 
@@ -13,18 +13,18 @@ router.post("/", async (req, res) => {
       password,
     });
     if (!user) {
-      res.status(400).send({
+      return res.status(400).send({
         errorMessage: "이메일 또는 패스워드가 잘못됐습니다.",
       });
-      return;
     }
     // 토큰 생성
     const userInfo = { userId: user._id, nickname: user.nickname };
     const options = {
       expiresIn: "5m",
     };
+
     const token = jwt.sign(userInfo, process.env.SECRET_KEY, options);
-    res.send({ token })
+    res.send({ token });
   } catch (err) {
     console.error(err);
     res.status(400).send({

@@ -37,6 +37,7 @@ router.get('/', (req, res) => {
 	})
 })
 router.post('/', (req, res) => {
+	console.log('req.body test', req.body)
 	//todo: load user info from res.locals created by token
 	//const userId = null
 	//const userId = 'test'
