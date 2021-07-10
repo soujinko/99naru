@@ -3,6 +3,7 @@ import express from "express";
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const jwtSecret = process.env.SECRET_KEY;
 
 // 회원가입 검사 및 등록
 router.post("/", multer.none(), async (req, res) => {
@@ -20,12 +21,11 @@ router.post("/", multer.none(), async (req, res) => {
     }
     // 토큰 생성
     const userInfo = { userId: user._id, nickname: user.nickname };
-    const secretKey = "TTEOKBOKKI";
     const options = {
       expiresIn: "5m",
     };
-    const token = jwt.sign(userInfo, secretKey, options);
-    res.send({
+    const token = jwt.sign(userInfo, jwtSecret, options);
+    res.statue(200).send({
       token,
     });
   } catch (err) {
