@@ -2,6 +2,7 @@ import express from 'express'
 import Joi from 'joi'
 import jwt from 'jsonwebtoken'
 import authMiddleware from '../middlewares/auth-middleware'
+import User from '../models/user.js'
 const router = express.Router()
 
 const postUserschema = Joi.object({
@@ -47,6 +48,7 @@ try {
         return;
     
 } catch (err) {
+	//todo 여기서 err의 message만 따로 뺀 이유는 무엇인가요?
     error = err.message;
     console.log(error);
     res.status(400).send({message: '회원가입 양식이 올바르지 않습니다.'})
