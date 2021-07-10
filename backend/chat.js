@@ -76,7 +76,7 @@ io.on("connection", (socket) => {
     io.emit("postNotification", post);
   });
 
-  //댓글 작성 알람
+  //댓글 작성 알람(프론트: 댓글 단 유저info, 댓글내용, 해당 게시물 유저info)
   socket.on("writingComment", (post, comment) => {
       const postUser = {
           nickname : post.nickname
@@ -104,14 +104,24 @@ io.on("connection", (socket) => {
     User.findById(userId)
     .then((user) => {
       const userInfo = user;
-
+      
+      // 현재 접속중 배열에서 제거
       currentOn.splice(currentOn.indexOf(userInfo.nickname), 1);
+
+      // 현재 socket.id랑 연결되어있는 닉네임이 있는 배열에서 제거
+      for (let i in currentOnUserInfo){
+        if (currentOnUserInfo[i].nickname === userInfo.nickname){
+          currentOnUserInfo.splice(i,1)
+        }
+      }
       io.emit('exitUser', userInfo.nickname);
       });
   });
 
-  socket.on("disconnect", () => {});// disconnect할때 해당 socket.id가 사라지는지 검사
-});                                  // 만약 그게 사라진다면 유저아이디랑 연결된 id 없애면 됌.
+  socket.on("disconnect", () => {
+    console.log('나감');    // 브라우저를 끄거나 탭을 닫으면 disconnect 작동 X
+  });
+});                                  
 
 
 
