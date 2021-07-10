@@ -1,8 +1,7 @@
-const socketIo = require("socket.io");
-const server = require('./backend/index')
-const io = socketIo(server);
-const jwt = require('jsonwebtoken');
-const User = require('./models/user');
+import { io } from './index.js'
+import jwt from 'jsonwebtoken'
+import User from './models/user.js'
+
 
 const currentOn = [];
 
@@ -81,5 +80,5 @@ io.on("connection", (socket) => {
 });                                  // 만약 그게 사라진다면 유저아이디랑 연결된 id 없애면 됌.
 
 
-export default io
+
 
