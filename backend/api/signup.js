@@ -24,11 +24,13 @@ router.post("/", async (req, res) => {
     const { loginId, nickname, password } = await postUserschema.validateAsync(
       req.body
     );
-    const { passwordconfirm } = req.body;
-    if (password !== passwordconfirm) {
-      res.status(400).send({ errorMessage: "비밀번호가 일치하지 않습니다." });
-      return;
-    }
+
+    // const { passwordconfirm } = req.body;
+    // if (password !== passwordconfirm) {
+    //   return res
+    //     .status(400)
+    //     .send({ errorMessage: "비밀번호가 일치하지 않습니다." });
+    // }
     await User.create({
       loginId,
       nickname,
@@ -36,7 +38,7 @@ router.post("/", async (req, res) => {
     });
     return res.status(201).send({ message: "회원가입을 축하합니다." });
   } catch (err) {
-    console.error(err);
+    console.error(err.message);
     res
       .status(400)
       .send({ errorMessage: "회원가입 양식이 올바르지 않습니다." });

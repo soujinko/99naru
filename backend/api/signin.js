@@ -13,10 +13,9 @@ router.post("/", async (req, res) => {
       password,
     });
     if (!user) {
-      res.status(400).send({
+      return res.status(400).send({
         errorMessage: "이메일 또는 패스워드가 잘못됐습니다.",
       });
-      return;
     }
     // 토큰 생성
     const userInfo = { userId: user._id, nickname: user.nickname };

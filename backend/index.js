@@ -12,10 +12,6 @@ const app = express();
 const server = http.createServer(app);
 export const io = new Server(server);
 
-dotenv.config();
-const app = express();
-const server = http.createServer(app);
-
 app.use(cors());
 app.use(multer().none());
 app.use(express.json());
