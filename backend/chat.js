@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
         currentOn.push(userInfo.nickname);
         io.emit('enterUser', userInfo.nickname);
         io.emit('currentOn', currentOn); // 현재 접속자 리스트
-      };
+      }
     });
   });
 
