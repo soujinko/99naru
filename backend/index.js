@@ -7,7 +7,7 @@ import router from "./api/index.js";
 import multer from "multer";
 import "./models/index.js";
 
-import authMiddleware from "./middlewares/auth-middleware";
+// import authMiddleware from "./middlewares/auth-middleware";
 
 dotenv.config();
 const app = express();
