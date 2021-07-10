@@ -4,9 +4,6 @@ import jwt from 'jsonwebtoken'
 import authMiddleware from '../middlewares/auth-middleware'
 const router = express.Router()
 
-router.use(express.urlencoded({ extended: false }));
-router.use(express.json());
-
 const postUserschema = Joi.object({
     nickname: Joi.string()
       .regex(/^[a-zA-Z0-9]/)
