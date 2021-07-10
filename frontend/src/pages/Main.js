@@ -15,12 +15,16 @@ function Main() {
     // 	console.error(error)
     // })
 
-    // 게시물 작성 테스트
-    // axios.post('http://localhost:3000/api/posts', {
-    // 	text: '샘플텍스트입니다.'
-    // }).then(res => {
-    // 	console.log(res)
-    // })
+    // 회원가입 테스트
+    axios
+      .post("http://localhost:3000/api/signup", {
+        loginId: "test12345",
+        nickname: "test12345",
+        password: "test12345!",
+      })
+      .then((res) => {
+        console.log(res);
+      });
 
     // 댓글 작성 테스트
     axios.post("http://localhost:3000/api/comments", {
