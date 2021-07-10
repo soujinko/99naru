@@ -8,14 +8,25 @@ function Main() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/posts")
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // axios.get('http://localhost:3000/api/posts'
+    // ).then(response => {
+    // 	console.log(response.data)
+    // }).catch(error => {
+    // 	console.error(error)
+    // })
+
+    // 게시물 작성 테스트
+    // axios.post('http://localhost:3000/api/posts', {
+    // 	text: '샘플텍스트입니다.'
+    // }).then(res => {
+    // 	console.log(res)
+    // })
+
+    // 댓글 작성 테스트
+    axios.post("http://localhost:3000/api/comments", {
+      postId: "60e947630c78ef31d42313f2", //retreived directly from db, thus won't work on other envs
+      text: "댓글 샘플 테스트입니다.",
+    });
   });
 
   return (

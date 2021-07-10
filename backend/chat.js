@@ -1,24 +1,30 @@
-const socketIo = require("socket.io");
-const server = require('./backend/index')
-const io = socketIo(server);
+import { io } from './index.js'
+import jwt from 'jsonwebtoken'
+import User from './models/user.js'
+
 
 const currentOn = [];
+
 io.on("connection", (socket) => {
   const currentDate = JSON.stringify(new Date());
-
+  io.emit('currentOn', currentOn); // (현재 접속자 리스트) 게시물 업데이트때문에 refresh 할일이 많아서 처음에 넣어줌.
+                                  
   socket.on("join", ({ token }) => {
-    //res.locals; //미들웨어에서 토큰으로 체크하고 유저정보 받아오기
-
-    // const socketId = {
-    //     id : token,           //socket.id랑 유저아이디랑 연결
-    //     sId : socket.id
-    //   }
-
-    if (currentOn.indexOf(nickname) == -1) {
-      currentOn.push(nickname);
-      socket.emit("enterUser", `${nickname}님이 입장하셨습니다.`);
-      io.emit("currentOn", currentOn); // 현재 접속자 리스트 업데이트
+    if (token === null) {
+      return;
     }
+    const { userId } = jwt.verify(token, '키');
+    
+    User.findById(userId)
+    .then((user) => {
+      const userInfo = user 
+
+      if (currentOn.indexOf(userInfo.nickname) === -1) {  //유저아이디가 있으면 현재인원에추가안해줘도 됌
+        currentOn.push(userInfo.nickname);
+        io.emit('enterUser', userInfo.nickname);
+        io.emit('currentOn', currentOn); // 현재 접속자 리스트
+      }
+    });
   });
 
   //메세지 주고받기
@@ -50,20 +56,29 @@ io.on("connection", (socket) => {
         nickname : comment.nickname,
         date: currentDate
       };
-      socketid = sds;
+      // socketid = 찾기;
       socket.broadcast.to(socketid).emit("commentNotification", postUser, commentUser) //특정 socketid에게만 전송
   });
 
   //로그아웃 했을경우
-  socket.on("signOut", (token) => {
-    currentOn.splice(currentOn.indexOf(nickname), 1);
-    io.emit("currentOn", currentOn); // 현재 접속자 리스트 업데이트
-    io.emit("exitUser", `${nickname}님이 나가셨습니다.`);
+  socket.on('signOut', (token) => {
+    if (token === null) {
+      return;
+    }
+    const { userId } = jwt.verify(token, '키');
+    
+    User.findById(userId)
+    .then((user) => {
+      const userInfo = user;
+
+      currentOn.splice(currentOn.indexOf(userInfo.nickname), 1);
+      io.emit('exitUser', userInfo.nickname);
+      });
   });
 
   socket.on("disconnect", () => {});// disconnect할때 해당 socket.id가 사라지는지 검사
 });                                  // 만약 그게 사라진다면 유저아이디랑 연결된 id 없애면 됌.
 
 
-export default io
+
 

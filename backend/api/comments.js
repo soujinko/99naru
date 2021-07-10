@@ -1,5 +1,6 @@
 import express from 'express'
 import Comment from '../models/comment.js'
+import Post from '../models/post.js'
 
 const router = express.Router()
 
@@ -35,7 +36,12 @@ router.get('/', (req, res) => {
 	})
 })
 router.post('/', (req, res) => {
-	Comment.create(req.body).then(() => {
+	const { postId, text } = req.body
+	Comment.create({postId, text}).then(comment => {
+		Post.findById(postId).exec().then(post => {
+			post.comments.push(comment)
+			return post.save()
+		})
 		res.sendStatus(201)
 	}).catch(err => {
 		console.error(err)
