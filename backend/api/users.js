@@ -39,14 +39,11 @@ try {
     $and: [{ $or: [{ nickname }, { loginId }] }],
     });
     if (existUser.length) {
-        res.status(400).send({errorMessage: '이미 가입된 닉네임 혹은 아이디입니다.'})
-        return;
+        return res.status(400).send({errorMessage: '이미 가입된 닉네임 혹은 아이디입니다.'})
     }
 
     await User.create({ loginId, nickname, password, intro});
-    res.status(201).send({message: '회원가입을 축하합니다.'})
-        return;
-    
+    return res.status(201).send({message: '회원가입을 축하합니다.'})
 } catch (err) {
 	//todo 여기서 err의 message만 따로 뺀 이유는 무엇인가요?
     error = err.message;
