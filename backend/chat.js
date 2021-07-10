@@ -25,7 +25,7 @@ io.on("connection", (socket) => {
         socketId : socket.id
       } 
       
-      if (currentOn.indexOf(userInfo.nickname) === -1) {  //유저아이디가 있으면 현재인원에추가안해줘도 됌
+      if (currentOn.indexOf(userInfo.nickname) === -1) {  //현재 접속자에 유저아이디가 없으면 추가
         currentOn.push(userInfo.nickname);
         currentOnUserInfo.push(userSocketId);
         io.emit('enterUser', userInfo.nickname);
@@ -67,7 +67,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  // 게시물 포스팅 알람(프론트: 보내는 유저info)
+  // 게시물 포스팅 알람(프론트: 게시물 작성한 유저info)
   socket.on("posting", (giveNickname) => {
     const post = {
       nickname: giveNickname,
@@ -119,7 +119,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log('나감');    // 브라우저를 끄거나 탭을 닫으면 disconnect 작동 X
+    console.log('나감');    // todo 브라우저를 끄거나 탭을 닫으면 disconnect 작동하는지 검사
   });
 });                                  
 
