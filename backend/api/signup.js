@@ -19,7 +19,7 @@ const postUserschema = Joi.object({
   intro: Joi.string().min(3).required(),
 });
 // 회원가입 검사 및 등록
-router.post("/", multer.none(), async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { loginId, nickname, password, intro } =
       await postUserschema.validateAsync(req.body);
