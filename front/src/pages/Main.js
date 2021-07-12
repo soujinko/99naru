@@ -6,7 +6,13 @@ import PostList from "../components/PostList";
 import axios from "axios";
 
 const Main = () => {
-    const dispatch = useDispatch();
+  const token = sessionStorage.getItem("MY_SESSION");
+  if (token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("MY_SESSION")}`;
+  } else {
+    axios.defaults.headers.common['Authorization'] = null;
+  }
+  const dispatch = useDispatch();
     const [addpost, setaddPost] = React.useState("");
     const post_list = useSelector((state) => state.post.list);
     const is_session = sessionStorage.getItem("MY_SESSION") ? true : false;
