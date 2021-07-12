@@ -39,10 +39,12 @@ router.get('/', (req, res) => {
 })
 router.post('/', (req, res) => {
 	console.log('req.body test', req.body)
+	const { text } = req.body
+	const { userId } = res.locals.user
 	//todo: load user info from res.locals created by token
 	//const userId = null
 	//const userId = 'test'
-	Post.create(req.body).then(() => {
+	Post.create({ text, userId }).then(() => {
 		res.sendStatus(201)
 	}).catch(err => {
 		console.error(err)
