@@ -6,7 +6,8 @@ const router = express.Router()
 router.put('/:postId', (req, res) => {
 	const { postId } = req.params
 	const { text } = req.body
-	Post.findByIdAndUpdate(postId, text).exec().then(() => {
+	console.log('여기를 봐주세요', postId, text)
+	Post.findByIdAndUpdate(postId, { text }).exec().then(() => {
 		res.sendStatus(200)
 	}).catch(err => {
 		console.error(err)
