@@ -25,7 +25,7 @@ const PostList = (props) => {
         .post("http://localhost:3000/api/comments", {
           postId: `${postId}`,
           text: `${addcomments}`,
-        },{headers : {'Authorization': `${sessionStorage.getItem("MY_SESSION")}`}})
+        },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
         .then((res) => {
           console.log(res)
         });
@@ -36,7 +36,7 @@ const PostList = (props) => {
     const deletePost = () => {
         axios
         .delete(`http://localhost:3000/api/posts/${postId}`, {
-        },{headers : {'Authorization': `${sessionStorage.getItem("MY_SESSION")}`}})
+        },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
         .then((res) => {
           console.log(res)
         });
@@ -59,7 +59,7 @@ const PostList = (props) => {
         axios
         .put(`http://localhost:3000/api/posts/${postId}`, {
             text: `${modifypost}`,
-        },{headers : {'Authorization': `${sessionStorage.getItem("MY_SESSION")}`}})
+        },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
         .then((res) => {
           console.log(res)
         });
