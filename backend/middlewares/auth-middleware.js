@@ -2,10 +2,10 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 
 export default (req, res, next) => {
-  const { authorization } = req.headers;
+ { authorization } = req.headers;
   const [tokenType, tokenValue] = authorization.split(" ");
 
-  if (tokenType !== "Bearer") {
+  if   (tokenType !== "Bearer") {
     res.status(401).send({
       errorMessage: "로그인 후 사용하세요",
     });
