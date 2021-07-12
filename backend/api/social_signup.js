@@ -1,6 +1,6 @@
 import express from "express";
-const router = express.Router();
 
+const router = express.Router();
 const passport = require("passport");
 
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
@@ -25,7 +25,7 @@ passport.use(
     },
     function (request, accessToken, refreshToken, profile, done) {
       // console.log("profile: ", profile);
-      var user = profile;
+      const user = profile;
 
       done(null, user);
     }
@@ -59,7 +59,7 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // console.log("profile: ", profile._json.kakao_account);
-      var user = profile._json.kakao_account;
+      const user = profile._json.kakao_account;
 
       done(null, user);
     }
@@ -87,7 +87,7 @@ passport.use(
     },
     function (request, accessToken, refreshToken, profile, done) {
       // console.log("profile: ", profile._json);
-      var user = profile._json;
+      const user = profile._json;
 
       done(null, user);
     }
