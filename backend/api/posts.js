@@ -55,7 +55,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 	console.log('req.body test', req.body)
 	const { text } = req.body
-	const { userId } = res.locals.user
+	const { userId } = res.locals
 	Post.create({ text, userId }).then(() => {
 		res.sendStatus(201)
 	}).catch(err => {
