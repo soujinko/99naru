@@ -10,6 +10,9 @@ router.put('/:postId/like', (req, res) => {
 		const { likedUsers } = post
 		//todo likedUsers test
 		console.log(likedUsers)
+
+		likedUsers.push(userId)
+		post.save().then(() => res.sendStatus(200))
 	})
 
 })
