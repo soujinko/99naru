@@ -18,7 +18,7 @@ router.put('/:postId', (req, res) => {
 })
 router.delete('/:postId', (req, res) => {
 	const { postId } = req.params
-	Post.findByIdAndDelete(postId).sort('-created_at').exec().then(() => {
+	Post.findByIdAndDelete(postId).exec().then(() => {
 		res.sendStatus(200)
 	}).catch(err => {
 		console.error(err)
@@ -28,7 +28,7 @@ router.delete('/:postId', (req, res) => {
 	})
 })
 router.get('/', (req, res) => {
-	Post.find().populate('comments').exec().then(posts => {
+	Post.find().populate('comments').sort('-created_at').exec().then(posts => {
 		res.send(posts)
 	}).catch(err => {
 		console.error(err)
