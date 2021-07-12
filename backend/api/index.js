@@ -8,11 +8,11 @@ import duplicateRouter from './duplicate.js'
 
 const router = express.Router()
 
+router.use('/signin', signinRouter)
+router.use('/signup', signupRouter)
 router.use(auth)
 router.use('/posts', postsRouter)
 router.use('/comments', commentsRouter)
-router.use('/signin', signinRouter)
-router.use('/signup', signupRouter)
 router.use('/duplicate', duplicateRouter)
 
 export default router
