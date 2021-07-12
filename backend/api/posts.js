@@ -3,10 +3,16 @@ import Post from '../models/post.js'
 
 const router = express.Router()
 
+router.put('/:postId/like', (req, res) => {
+
+})
+router.put('/:postId/unlike', (req, res) => {
+
+})
+
 router.put('/:postId', (req, res) => {
 	const { postId } = req.params
 	const { text } = req.body
-	console.log('여기를 봐주세요', postId, text)
 	Post.findByIdAndUpdate(postId, { text }).exec().then(() => {
 		res.sendStatus(200)
 	}).catch(err => {
