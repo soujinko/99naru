@@ -5,10 +5,14 @@ import axios from "axios";
 const ADD_POST = "GET_POST";
 const SET_POST = "SET_POST";
 const MODIFY_POST = "MODIFY_POST";
+const DELETE_POST = "DELETE_POST";
+const IS_MODIFY = "IS_MODIFY";
 
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const modifyPost = createAction(MODIFY_POST, (post_list) => ({ post_list })); //회원가입 시 ?
+const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list })); //회원가입 시 ?
+const is_modify = createAction(IS_MODIFY, (post_list) => ({ post_list })); //회원가입 시 ?
 
 const initialState = {
   list: [],
@@ -37,7 +41,11 @@ const setpostDB = (id, pwd, user_name) => {
 
 };
 
-const modifypostDB = (id, pwd) => {
+const modifypostDB = (postId, text) => {
+    
+};
+
+const deletePostDB = (postId) => {
 
 };
 
@@ -51,7 +59,12 @@ export default handleActions(
         draft.list = action.payload.post_list;
       }),
     [MODIFY_POST]: (state, action) => produce(state, (draft) => {}),
+    [IS_MODIFY]: (state, action) => produce(state, (draft) => {
+      draft.list = action.payload.post_list;
+      draft.is_modify = true;
+    }),
   },
+  
   initialState
 );
 
@@ -59,6 +72,7 @@ const actionCreators = {
   addPost,
   setPost,
   modifyPost,
+  is_modify,
   getpostDB,
   setpostDB,
   modifypostDB,
