@@ -1,8 +1,12 @@
 import "./App.css";
 import React from "react";
+import styled from "styled-components";
+
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
+
 import { Login, Signup, Profile, Main } from "../pages";
+
 import { Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
