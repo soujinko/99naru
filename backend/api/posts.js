@@ -4,10 +4,10 @@ import Post from '../models/post.js'
 const router = express.Router()
 
 router.put('/:postId/like', (req, res) => {
-
+	const { postId } = req.params
 })
 router.put('/:postId/unlike', (req, res) => {
-
+	const { postId } = req.params
 })
 
 router.put('/:postId', (req, res) => {
