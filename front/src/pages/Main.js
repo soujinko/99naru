@@ -10,9 +10,7 @@ const Main = () => {
     const [addpost, setaddPost] = React.useState("");
     const post_list = useSelector((state) => state.post.list);
     const is_session = sessionStorage.getItem("MY_SESSION") ? true : false;
-    // const user_nick = useSelector((state) => state.user.nick_name)
-
-    // console.log(sessionStorage.getItem("MY_SESSION"))
+    const user_nick = useSelector((state) => state.user.nick_name)
     const go_login = () => {
       window.location.href = "/login"
     }
@@ -21,19 +19,19 @@ const Main = () => {
       window.location.href = "/login"
     }
     const addPost = () => {
-      console.log(addpost)
       if(addpost===""){
         window.alert("입력해주세요!")
         return;
       }
       axios
-      .post("http://localhost:3000/api/posts", {
-        text: `${addpost}`,
-      })
+      .post("http://localhost:3000/api/posts", 
+      {text: `${addpost}`,},
+      {headers : {'Authorization': `${sessionStorage.getItem("MY_SESSION")}`}}
+      )
       .then((res) => {
         console.log(res)
       });
-      // window.location.reload()
+      window.location.reload()
     }
     React.useEffect(() => {
       dispatch(postActions.getpostDB());
@@ -44,13 +42,13 @@ const Main = () => {
       return (
         <React.Fragment>
           <h1>메인 페이지</h1>
-          {/* <h5>{user_nick}님</h5> */}
+          <h5>{user_nick}님</h5>
           <input type='text' onChange={(e) => {setaddPost(e.target.value)}}></input>
           <button onClick={addPost}>입력</button>
           {is_session ? <button onClick={logout}>로그아웃</button> : <button onClick={go_login}>로그인하러가자</button>}
             
             {post_list.map((p, idx, a) => {
-              return <PostList key={p._id} list = {p} />
+              return <PostList key={p._id} list = {p} is_modify={false}/>
             })}
         </React.Fragment>
       );
