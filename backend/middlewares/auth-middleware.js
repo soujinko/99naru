@@ -7,20 +7,25 @@ module.exports = (req, res, next) => {
 
   if (tokenType !== "Bearer") {
     res.status(401).send({
-      errorMessage: "로그인 후 사용하세요",
+      errorMessage: "token이 유효하지 않습니다.",
     });
     return;
   }
   try {
     const { userId } = jwt.verify(tokenValue, process.env.SECRET_KEY);
-    User.findById(userId).then((user) => {
-      res.locals.user_id = user_id;
-      next();
-    });
-  } catch (error) {
-    res.status(401).send({
-      errorMessage: "로그인 후 사용하세요",
-    });
-    return;
+    const findUser = await User.findById(userId).exec();
+    if (findUser === null) {
+      throw new Error("invalidUser");
+    } else {
+      User.findById(userId).then((user) => {
+        res.locals.userId = userId;
+        next();
+      });
+    }
+  } catch (err) {
+    if (err.name == "TokenExpiredError") {
+      return res.status(419).send({ message: "token 만료" });
+    }
+    return res.status(401).send({ message: "token이 유효하지 않습니다." });
   }
 };
