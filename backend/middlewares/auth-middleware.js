@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/user";
+import User from "../models/user.js";
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
