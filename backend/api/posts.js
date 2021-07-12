@@ -3,10 +3,25 @@ import Post from '../models/post.js'
 
 const router = express.Router()
 
+router.put('/:postId/like', (req, res) => {
+	const { postId } = req.params
+	const { userId } = res.locals
+	Post.findById(postId).exec().then(post => {
+		const { likedUsers } = post
+		likedUsers.push(userId)
+		post.save().then(() => res.sendStatus(200))
+	})
+
+})
+router.put('/:postId/unlike', (req, res) => {
+	const { postId } = req.params
+	const { userId } = res.locals
+	//todo: https://stackoverflow.com/questions/26252569/mongoose-delete-subdocument-array-item
+})
+
 router.put('/:postId', (req, res) => {
 	const { postId } = req.params
 	const { text } = req.body
-	console.log('여기를 봐주세요', postId, text)
 	Post.findByIdAndUpdate(postId, { text }).exec().then(() => {
 		res.sendStatus(200)
 	}).catch(err => {
