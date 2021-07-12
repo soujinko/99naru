@@ -8,9 +8,6 @@ router.put('/:postId/like', (req, res) => {
 	const { userId } = res.locals
 	Post.findById(postId).exec().then(post => {
 		const { likedUsers } = post
-		//todo likedUsers test
-		console.log(likedUsers)
-
 		likedUsers.push(userId)
 		post.save().then(() => res.sendStatus(200))
 	})
@@ -19,6 +16,7 @@ router.put('/:postId/like', (req, res) => {
 router.put('/:postId/unlike', (req, res) => {
 	const { postId } = req.params
 	const { userId } = res.locals
+	//todo: https://stackoverflow.com/questions/26252569/mongoose-delete-subdocument-array-item
 })
 
 router.put('/:postId', (req, res) => {
