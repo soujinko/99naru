@@ -26,7 +26,7 @@ const Main = () => {
       axios
       .post("http://localhost:3000/api/posts", 
       {text: `${addpost}`,},
-      {headers : {'Authorization': `${sessionStorage.getItem("MY_SESSION")}`}}
+      {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
       )
       .then((res) => {
         console.log(res)
