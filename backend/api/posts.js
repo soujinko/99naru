@@ -18,7 +18,7 @@ router.put('/:postId', (req, res) => {
 })
 router.delete('/:postId', (req, res) => {
 	const { postId } = req.params
-	Post.findByIdAndDelete(postId).exec().then(() => {
+	Post.findByIdAndDelete(postId).sort('-created_at').exec().then(() => {
 		res.sendStatus(200)
 	}).catch(err => {
 		console.error(err)
