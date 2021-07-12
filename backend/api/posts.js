@@ -5,9 +5,17 @@ const router = express.Router()
 
 router.put('/:postId/like', (req, res) => {
 	const { postId } = req.params
+	const { userId } = res.locals
+	Post.findById(postId).exec().then(post => {
+		const { likedUsers } = post
+		//todo likedUsers test
+		console.log(likedUsers)
+	})
+
 })
 router.put('/:postId/unlike', (req, res) => {
 	const { postId } = req.params
+	const { userId } = res.locals
 })
 
 router.put('/:postId', (req, res) => {
