@@ -45,7 +45,7 @@ router.delete('/:postId', (req, res) => {
 	})
 })
 router.get('/', (req, res) => {
-	Post.find().populate('comments').exec().then(posts => {
+	Post.find().populate('comments').sort('-created_at').exec().then(posts => {
 		res.send(posts)
 	}).catch(err => {
 		console.error(err)
