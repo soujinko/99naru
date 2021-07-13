@@ -39,7 +39,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>/signin</td>
     <td>POST</td>
     <td>loginId, password</td>
-    <td>token : {userId, nickname, expiresIn}</td>
+    <td style="font-family:Monospace">token : {userId, nickname, expiresIn}</td>
   </tr>
   <tr>
     <td rowspan="2">회원가입</td>
@@ -54,7 +54,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>/signup</td>
     <td>POST</td>
     <td>loginId, password, nickname</td>
-    <td>201, {message: '회원가입을 축하합니다.'}</td>
+    <td style="font-family:Monospace">201, {message: '회원가입을 축하합니다.'}</td>
   </tr>
 
   <tr>
@@ -63,7 +63,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td  rowspan="2">/posts</td>
     <td>GET</td>
     <td></td>
-    <td>posts [] {text, userId, created_at, comments}</td>
+    <td style="font-family:Monospace">posts [] {text, userId, created_at, comments}</td>
   </tr>
    <tr>
     <td>게시물<br>작성</td>
@@ -122,7 +122,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>200</td>
   </tr>
   <tr>
-    <td>좋아요 취소</td>
+    <td>좋아요<br>취소</td>
     <td >/posts/:postId/likes</td>
     <td>DELETE</td>
     <td>postId</td>
@@ -131,14 +131,14 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
 
   <tr>
     <td rowspan="2">내정보</td>
-    <td>내 정보 가져오기</td>
+    <td>내 정보<br>가져오기</td>
     <td rowspan="2">/profile</td>
     <td>GET</td>
     <td>userId</td>
-    <td>{ profile }</td>
+    <td style="font-family:Monospace">{ profile }</td>
   </tr>
   <tr>
-    <td>내정보 수정하기</td>
+    <td>내정보<br>수정하기</td>
     <td>PUT</td>
     <td>userId, nickname, password, intro </td>
     <td>200</td>
