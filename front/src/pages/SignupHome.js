@@ -164,6 +164,7 @@ export default function SignupSide() {
               id="password"
               autoComplete="current-password"
               inputProps = {{ pattern: "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]"}}
+              //todo 여기랑 함수 패턴이 중복돼요
             />
             <TextField
               onChange={(e) => {setPwdCheck(e.target.value)}}
