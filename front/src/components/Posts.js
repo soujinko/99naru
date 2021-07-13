@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Grid, Image, Text, Button, Input } from "../elements";
 import CommentWrite from "./CommentWrite";
 import CommentList from "./CommentList";
-
 import {
   IoChatbubbleEllipsesOutline,
   IoChatbubbleEllipsesSharp,
@@ -12,27 +11,44 @@ import {
   IoTrash,
   IoSettingsOutline,
 } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
+import axios from "axios";
 
 const PostList = (props) => {
+  
+  const deletePost = () => {
+    console.log(props.props._id)
+  axios
+    .delete(`http://localhost:3000/api/posts/${props.props._id}`,
+    {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
+  ).then((response) => {
+    console.log(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    window.location.reload();
+  }
   return (
     <React.Fragment>
       <PostView>
         <Grid is_flex padding="16px 16px 0px 16px" width="100%">
           <Grid is_flex width="100%" left>
             <Image shape="circle" src={props.src} />
-            <Text bold>사용자 닉네임</Text>
+            <Text bold>{props.props.userId}</Text>
           </Grid>
           <Grid is_flex width="100%">
             <Grid is_flex width="100%">
               <Grid right>
-                <Text>작성 시간</Text>
+                <Text>{props.props.created_at}</Text>
               </Grid>
               <Grid is_flex width="100" left padding="0px 10px">
                 <IconWrap>
                   <IoSettingsOutline />
                 </IconWrap>
                 <IconWrap>
-                  <IoTrash />
+                  <IoTrash onClick={deletePost} />
                 </IconWrap>
               </Grid>
             </Grid>
@@ -42,7 +58,7 @@ const PostList = (props) => {
           {/* <Grid width="10%"></Grid> */}
           <Grid width="100%" bg="#F7F9F9" padding="8px">
             <Text padding="5px 10px" size="18px">
-              작성한 글 내용입니다.
+              {props.props.text}
             </Text>
           </Grid>
         </Grid>
@@ -67,8 +83,9 @@ const PostList = (props) => {
         </Grid>
         <Grid>
           <CommentWrite></CommentWrite>
-          <CommentList></CommentList>
-          <CommentList></CommentList>
+          {props.props.comments.map((p, idx) => {
+            return <CommentList commets={p}></CommentList>
+          })}
           <CommentList></CommentList>
         </Grid>
       </PostView>
