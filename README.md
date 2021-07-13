@@ -91,6 +91,64 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>201</td>
   </tr>
 
+
+ <tr>
+    <td rowspan="4">댓글</td>
+    <td>댓글 보여주기</td>
+    <td  rowspan="4">/comments</td>
+    <td>GET</td>
+    <td>postId</td>
+    <td>403, forbidden</td>
+  </tr>
+  <tr>
+    <td>댓글 작성</td>
+    <td>POST</td>
+    <td>postId, text</td>
+    <td>201</td>
+  </tr>
+  <tr>
+    <td>댓글 수정</td>
+    <td>PUT</td>
+    <td>postId, commentId, text</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>댓글 삭제</td>
+    <td>DELETE</td>
+    <td>postId, commentId</td>
+    <td>200</td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">좋아요</td>
+    <td>좋아요</td>
+    <td>/posts/:postId/likes</td>
+    <td>POST</td>
+    <td>postId</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>좋아요 취소</td>
+    <td >/posts/:postId/likes</td>
+    <td>DELETE</td>
+    <td>postId</td>
+    <td>200</td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">내정보</td>
+    <td>내 정보 가져오기</td>
+    <td rowspan="2">/profile</td>
+    <td>GET</td>
+    <td>userId</td>
+    <td>{ profile }</td>
+  </tr>
+  <tr>
+    <td>내정보 수정하기</td>
+    <td>PUT</td>
+    <td>userId, nickname, password, intro </td>
+    <td>200</td>
+  </tr>
 </table>
 
 ## 4.⚡ 기술스텍 및 라이브러리
