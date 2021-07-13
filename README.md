@@ -21,6 +21,11 @@ https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
 
 ## 3. 🌟 API
 
+| 페이지 | 기능 | API URL | Method | request | response |
+|---|:---:|:---:|:---:|:---:|---:|
+| 로그인 | 로그인하기 | /signin | `POST` | loginId, password | token : {userId, nickname, expiresIn} |
+
+
 https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
 
 
