@@ -16,6 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -58,6 +59,7 @@ export default function SignInSide() {
   }
 
 
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -73,6 +75,7 @@ export default function SignInSide() {
           <form className={classes.form} noValidate>
             <TextField
               onChange={(e) => {setId(e.target.value)}}
+
               variant="outlined"
               margin="normal"
               required
@@ -84,6 +87,7 @@ export default function SignInSide() {
             />
             <TextField
               onChange={(e) => {setPwd(e.target.value)}}
+
               variant="outlined"
               margin="normal"
               required
@@ -99,10 +103,10 @@ export default function SignInSide() {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
-            >
+              className={classes.submit}>
               로그인
             </Button>
+
           </form>
         </div>
       </Grid>

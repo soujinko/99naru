@@ -24,8 +24,8 @@ const loginDB = (id, pwd) => {
     .then((res) => {
       sessionStorage.setItem("MY_SESSION", res.data.token);
       dispatch(setUser(id))
-      history.push("/main/home");
-      // window.location.href = "/";
+      // history.push("/main/home");
+      window.location.href = "/main/home";
     });
   }
 };

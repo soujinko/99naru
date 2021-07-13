@@ -57,6 +57,7 @@ const Container = styled.div`
   border-right: 3px solid #f7f9f9;
 `;
 
+
 const IconWrap = styled.div`
   width: 100%;
   margin: 2rem 0px;
