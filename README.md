@@ -8,6 +8,8 @@
 ## 1. 📌Wireframe
 
 https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
+<img src="static/naruwire.PNG" alt="My Image">
+
 
 ## 2. 🤝Developers
 
@@ -24,7 +26,7 @@ https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
 https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
 
 
-<table width = "1000" style="text-align:center; margin-bottom:30px;" >
+<table width = "1000" style="text-align:center;" >
   <tr>
     <th width = "100" style="word-break:break-all">페이지</th>
     <th width = "100">기능</th>
