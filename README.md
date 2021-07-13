@@ -1,6 +1,6 @@
 # 항해나루 - Hanghaenaru
-
-### 프로젝트 소개  
+***
+### about 
 항해나루(Hanghaenaru) is a mockup sns project    
   
 ### 프로젝트 기간   
