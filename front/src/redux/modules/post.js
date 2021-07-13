@@ -26,16 +26,31 @@ const getpostDB = () => {
   return function (dispatch, getState, {history}) {
     axios
     .get('http://localhost:3000/api/posts',
+  {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
   ).then((response) => {
-    // console.log(response.data)
-    dispatch(setPost(response.data))
     console.log(response.data)
+    dispatch(setPost(response.data))
     })
     .catch((error) => {
       console.log(error);
     });
   }
-  
+};
+
+const addpostDB = (text) => {
+  return function (dispatch, getState, {history}) {
+    axios
+    .post('http://localhost:3000/api/posts',
+    {text: text},
+    // {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
+  ).then((response) => {
+    console.log(response.data)
+    // dispatch(setPost(response.data))
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 };
 
 const setpostDB = (id, pwd, user_name) => {
@@ -47,7 +62,7 @@ const modifypostDB = (postId, text) => {
 };
 
 const deletePostDB = (postId) => {
-
+  console.log(postId)
 };
 
 export default handleActions(
@@ -80,6 +95,8 @@ const actionCreators = {
   getpostDB,
   setpostDB,
   modifypostDB,
+  addpostDB,
+  deletePostDB,
 };
 
 export { actionCreators };
