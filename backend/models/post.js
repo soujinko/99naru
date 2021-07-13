@@ -20,7 +20,10 @@ const postSchema = new mongoose.Schema({
 	// Thus it's safe to use here
 	comments: [commentSchema],
 	// count the number of liked users by implementing a method
-	likedUsers: [userSchema]
+	likedUsers: {
+		type: userSchema,
+		default: {}
+	}
 })
 
 export default mongoose.model('Post', postSchema)
