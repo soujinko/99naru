@@ -27,7 +27,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
 <table width = "1000" style="text-align:center; " >
   <tr>
     <th width = "100" style="word-break:break-all">페이지</th>
-    <th>기능</th>
+    <th width = "100">기능</th>
     <th>API URL</th>
     <th>Method</th>
     <th>request</th>
@@ -35,7 +35,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
   </tr>
   <tr>
     <td  style="word-break:break-all">로그인</td>
-    <td>로그인하기</td>
+    <td>로그인<br>하기</td>
     <td>/signin</td>
     <td>POST</td>
     <td>loginId, password</td>
@@ -50,7 +50,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>201, 400</td>
   </tr>
    <tr>
-    <td>회원가입하기</td>
+    <td>회원가입<br>하기</td>
     <td>/signup</td>
     <td>POST</td>
     <td>loginId, password, nickname</td>
@@ -59,27 +59,27 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
 
   <tr>
     <td rowspan="4">게시물</td>
-    <td>게시물 보여주기</td>
+    <td>게시물<br>보여주기</td>
     <td  rowspan="2">/posts</td>
     <td>GET</td>
     <td></td>
     <td>posts [] {text, userId, created_at, comments}</td>
   </tr>
    <tr>
-    <td>게시물 작성</td>
+    <td>게시물<br>작성</td>
     <td>POST</td>
     <td>text</td>
     <td>201</td>
   </tr>
   <tr>
-    <td>게시물 수정</td>
+    <td>게시물<br>수정</td>
     <td  rowspan="2">/posts/:postId</td>
     <td>PUT</td>
     <td>text</td>
     <td>201</td>
   </tr>
    <tr>
-    <td>게시물 삭제</td>
+    <td>게시물<br>삭제</td>
     <td>DELETE</td>
     <td>postId</td>
     <td>201</td>
@@ -88,7 +88,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
 
  <tr>
     <td rowspan="4">댓글</td>
-    <td>댓글 보여주기</td>
+    <td>댓글<br>보여주기</td>
     <td  rowspan="4">/comments</td>
     <td>GET</td>
     <td>postId</td>
