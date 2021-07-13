@@ -12,7 +12,7 @@
 ##  📌Wireframe
 
 <!-- https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC -->
-<img src="static/wireframe.PNG" alt="My Image">
+<img src="static/wireframe.png" alt="My Image">
 
 
 ##  🤝Developers
