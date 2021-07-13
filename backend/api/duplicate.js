@@ -10,9 +10,9 @@ router.post("/", async (req, res) => {
     $and: [{ $or: [{ nickname }, { loginId }] }],
   });
   if (existUser.length) {
-    res.send(false);
+    res.sendStatus(401);
   } else {
-    res.send(true);
+    res.sendStatus(200);
   }
 });
 
