@@ -24,6 +24,10 @@ https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
 https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
 
 
+| 페이지 | 기능 | API URL | Method | request | response |
+|---|:---:|:---:|:---:|:---:|---:|
+| 로그인 | 로그인하기 | /signin | `POST` | loginId, password | token : {userId, nickname, expiresIn} |
+
 ## 4.⚡ 기술스텍 및 라이브러리
 | 종류 | 이름 |
 |:---:|:---:|
