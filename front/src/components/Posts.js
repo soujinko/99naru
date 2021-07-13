@@ -16,7 +16,19 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import axios from "axios";
 
 const PostList = (props) => {
-  console.log(props.post_data.likedUsers.length)
+  console.log(props.post_data.created_at)
+  const dateD = props.post_data.created_at.split("T")[0].split("-")
+  const dateT = props.post_data.created_at.split("T")[1].split(":")
+  console.log(dateD, dateT)
+  console.log(dateD[0],dateD[1],dateD[2],dateD[2],dateT[0],dateT[1])
+  console.log(dateT)
+ console.log(parseInt(dateD[0]))
+ console.log(parseInt(dateD[1]))
+ console.log(parseInt(dateD[2]))
+ console.log(parseInt(dateT[0]))
+ console.log(parseInt(dateT[1]))
+  
+
   const [show, setShow] = React.useState(false);
   const [showComment, setShowComment] = React.useState(false);
   const [editPost, setEdit] = React.useState("");
@@ -70,7 +82,7 @@ const PostList = (props) => {
           <Grid is_flex width="100%">
             <Grid is_flex width="100%">
               <Grid right>
-                <Text>{props.post_data.created_at.split('T')[0]}</Text>
+                <Text>{props.post_data.created_at}</Text>
               </Grid>
               {post_user_id===user_info_id ? 
               <Grid is_flex width="100" left padding="0px 10px">

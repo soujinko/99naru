@@ -61,8 +61,6 @@ export default function SignInSide() {
     window.location.href = "/signup"
   }
 
-
-
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />

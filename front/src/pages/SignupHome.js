@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,6 +58,20 @@ export default function SignupSide() {
   const goSignin = () => {
     window.location.href = "/"
   }
+  const duplicateCheck = () => {
+    console.log('sdf')
+    axios
+    .post(`http://localhost:3000/api/duplicate`, {
+      loginId : `${id}`,
+      nickname : `${nick}`,
+    },)
+    .then((res) => {
+      console.log(res)
+    }).catch(function(err) {
+      window.alert("형식을 맞춰주세요!")
+    });
+  }
+  
   const signup = () => {
   if (id==="" || pwd==="" || pwd_check==="" || nick==="") {
     window.alert("전부 채워주세요!");
@@ -114,6 +128,14 @@ export default function SignupSide() {
               label="NickName"
               autoFocus
             />
+            <Button
+              onClick={duplicateCheck}
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}>
+              아이디/닉네임 중복확인
+            </Button>
             <TextField
               onChange={(e) => {setPwd(e.target.value)}}
               variant="outlined"
