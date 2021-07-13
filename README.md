@@ -24,9 +24,9 @@ https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
 https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
 
 
-<table style="white-space: nowrap; border-collapse: collapse; width: 59.4188%; height: 112px; text-align:center; " border="1">
+<table width = "1000" style="text-align:center; " >
   <tr>
-    <th>페이지</th>
+    <th  style="word-break:break-all">페이지</th>
     <th>기능</th>
     <th>API URL</th>
     <th>Method</th>
@@ -34,7 +34,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <th>response</th>
   </tr>
   <tr>
-    <td>로그인</td>
+    <td  style="word-break:break-all">로그인</td>
     <td>로그인하기</td>
     <td>/signin</td>
     <td>POST</td>
