@@ -1,17 +1,19 @@
 # 항해나루 - Hanghaenaru
-***
+
 ### about 
 항해나루(Hanghaenaru) is a mockup sns project    
   
 ### 프로젝트 기간   
 2021.07.09 - 2021.07.15
 <br>
+<br>
+
 
 ##  📌Wireframe
 
 <!-- https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC -->
 <img src="static/naruwire.PNG" alt="My Image">
-
+<br>
 
 ##  🤝Developers
 
