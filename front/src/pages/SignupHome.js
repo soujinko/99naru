@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,7 +14,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {IdCheck, NickCheck, pwdCheck} from '../shared/common';
-
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import axios from 'axios';
@@ -52,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignupSide() {
   const classes = useStyles();
+  const Idinput = useRef();
+  console.log(Idinput.focus)
   const dispatch = useDispatch();
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
@@ -121,6 +122,7 @@ export default function SignupSide() {
           <form className={classes.form} noValidate>
             
             <TextField
+              ref={Idinput}
               disabled={duplicate? true:false}
               onChange={(e) => {setId(e.target.value)}}
               variant="outlined"
@@ -141,7 +143,6 @@ export default function SignupSide() {
               fullWidth
               id="nickname"
               label="NickName"
-              autoFocus
             />
               <Button
               onClick={duplicateCheck}
