@@ -24,13 +24,7 @@ https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
 https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
 
 
-| 페이지 | 기능 | API URL | Method | request | response |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| 로그인 | 로그인하기 | /signin | `POST` | loginId, password | token : {userId, nickname, expiresIn} |
-| 로그인 | 중복확인 | /duplicate | `POST` | loginId, password | token : {userId, nickname, expiresIn} |
-| 로그인 | 회원가입하기 | /signup | `POST` | loginId, password, nickname | 201, {message: '회원가입을 축하합니다.'} |
-
-<table>
+<table width = "800" height="500">
   <tr>
     <th>페이지</th>
     <th>기능</th>
