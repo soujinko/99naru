@@ -25,8 +25,37 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
 
 
 | 페이지 | 기능 | API URL | Method | request | response |
-|---|:---:|:---:|:---:|:---:|---:|
+|:---:|:---:|:---:|:---:|:---:|:---:|
 | 로그인 | 로그인하기 | /signin | `POST` | loginId, password | token : {userId, nickname, expiresIn} |
+| 로그인 | 중복확인 | /duplicate | `POST` | loginId, password | token : {userId, nickname, expiresIn} |
+| 로그인 | 회원가입하기 | /signup | `POST` | loginId, password, nickname | 201, {message: '회원가입을 축하합니다.'} |
+
+<table>
+  <tr>
+    <th>페이지</th>
+    <th>기능</th>
+    <th>API URL</th>
+    <th>Method</th>
+    <th>request</th>
+    <th>response</th>
+  </tr>
+  <tr>
+    <td>로그인</td>
+    <td>로그인하기</td>
+    <td>/signin</td>
+    <td>`POST`</td>
+    <td>loginId, password</td>
+    <td>token : {userId, nickname, expiresIn}</td>
+  </tr>
+  <tr>
+    <td>내용</td>
+    <td>내용</td>
+    <td>내용</td>
+    <td>내용</td>
+    <td>내용</td>
+    <td>내용</td>
+  </tr>
+</table>
 
 ## 4.⚡ 기술스텍 및 라이브러리
 | 종류 | 이름 |
