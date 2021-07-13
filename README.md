@@ -39,7 +39,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>/signin</td>
     <td>POST</td>
     <td>loginId, password</td>
-    <td style="font-family:Monospace">token : {userId, nickname, expiresIn}</td>
+    <td style="font-family:monospace">token : {userId, nickname, expiresIn}</td>
   </tr>
   <tr>
     <td rowspan="2">회원가입</td>
@@ -54,7 +54,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>/signup</td>
     <td>POST</td>
     <td>loginId, password, nickname</td>
-    <td style="font-family:Monospace">201, {message: '회원가입을 축하합니다.'}</td>
+    <td style="font-family:monospace">201, {message: '회원가입을 축하합니다.'}</td>
   </tr>
 
   <tr>
