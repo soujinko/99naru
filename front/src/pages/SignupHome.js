@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import {IdCheck, NickCheck, pwdCheck} from '../shared/common';
+
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import axios from 'axios';
@@ -55,27 +57,43 @@ export default function SignupSide() {
   const [pwd, setPwd] = React.useState("");
   const [pwd_check, setPwdCheck] = React.useState("");
   const [nick, setNick] = React.useState("");
+  const [duplicate, setduplicate] = React.useState(false);
   const goSignin = () => {
     window.location.href = "/"
   }
   const duplicateCheck = () => {
-    console.log('sdf')
+    if (id===""||nick===""){
+      window.alert("빈 칸을 채워주세요!")
+      return;
+    }
+    if (id.length < 3||!IdCheck(id)) {
+      window.alert("영어와 숫자만 입력해주세요! 최소 3글자!")
+      return;
+    }
+    if (nick.length < 3||!NickCheck(nick)) {
+      window.alert("한글,영어,숫자만 입력가능합니다! 최소 3글자!")
+      return;
+    }
     axios
     .post(`http://localhost:3000/api/duplicate`, {
       loginId : `${id}`,
       nickname : `${nick}`,
     },)
     .then((res) => {
-      console.log(res)
+      console.log(res.status)
+      {res.status===200?setduplicate(true):setduplicate(false)}
+      window.alert("확인 성공!")
 	    //todo: 성공적인 응답이 오면 저 요소 선택해서 disalbed false 로 바꿔주기
     }).catch(function(err) {
     	console.error(err)
       window.alert("형식을 맞춰주세요!")
     });
   }
-  
+
+  console.log(pwdCheck(pwd))
+
   const signup = () => {
-  if (id==="" || pwd==="" || pwd_check==="" || nick==="") {
+  if (pwd==="" || pwd_check==="") {
     window.alert("전부 채워주세요!");
     return;
   }
@@ -83,16 +101,8 @@ export default function SignupSide() {
     window.alert("비밀번호가 일치하지 않습니다!");
     return;
   }
-  if (id.length < 3) {
-    window.alert("아이디 최소 3글자")
-    return;
-  }
-  if (pwd.length < 6) {
-    window.alert("비밀번호 최소 6글자")
-    return;
-  }
-  if (nick.length < 3) {
-    window.alert("닉네임 최소 3글자")
+  if (pwd.length < 6||!pwdCheck(pwd)) {
+    window.alert("특수문자,영어,숫자를 최소한 1개 씩 입력해주세요! 최소 6글자 입니다!")
     return;
   }
   console.log(id, pwd, nick)
@@ -109,7 +119,9 @@ export default function SignupSide() {
             회원가입
           </Typography>
           <form className={classes.form} noValidate>
+            
             <TextField
+              disabled={duplicate? true:false}
               onChange={(e) => {setId(e.target.value)}}
               variant="outlined"
               margin="normal"
@@ -121,6 +133,7 @@ export default function SignupSide() {
               autoFocus
             />
             <TextField
+              disabled={duplicate? true:false}
               onChange={(e) => {setNick(e.target.value)}}
               variant="outlined"
               margin="normal"
@@ -130,14 +143,16 @@ export default function SignupSide() {
               label="NickName"
               autoFocus
             />
-            <Button
+              <Button
               onClick={duplicateCheck}
+              disabled={duplicate ? true : false}
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}>
               아이디/닉네임 중복확인
             </Button>
+
             <TextField
               onChange={(e) => {setPwd(e.target.value)}}
               variant="outlined"
@@ -169,7 +184,7 @@ export default function SignupSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={true}
+              disabled={ duplicate? false : true }
             >
               회원가입
             </Button>
