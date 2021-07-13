@@ -68,6 +68,7 @@ export default function SignupSide() {
     .then((res) => {
       console.log(res)
     }).catch(function(err) {
+    	console.error(err)
       window.alert("형식을 맞춰주세요!")
     });
   }
