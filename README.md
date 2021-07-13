@@ -1,17 +1,19 @@
 # 항해나루 - Hanghaenaru
 
- - ### 프로젝트 소개  
+### 프로젝트 소개  
 항해나루(Hanghaenaru) is a mockup sns project    
   
-- ### 프로젝트 기간   
-2021/07/09 ~ 2021/07/15
-## 1. 📌Wireframe
+### 프로젝트 기간   
+2021.07.09 - 2021.07.15
+<br>
 
-https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
+##  📌Wireframe
+
+<!-- https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC -->
 <img src="static/naruwire.PNG" alt="My Image">
 
 
-## 2. 🤝Developers
+##  🤝Developers
 
 - Backend (Node.js)
   - 고수진 : sign in, sign up, userSchema
@@ -20,8 +22,9 @@ https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
 - Frontend (React)
   - 오일교
   - 최지혁
+<br>
 
-## 3. 🌟 API
+##  🌟 API
 
 https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
 
@@ -146,8 +149,9 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>200</td>
   </tr>
 </table>
+<br>
 
-## 4.⚡ 기술스텍 및 라이브러리
+## ⚡ 기술스텍 및 라이브러리
 
 <table width = "400" style="text-align:center; " >
   <tr>
