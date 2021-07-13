@@ -13,22 +13,22 @@
 
 <!-- https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC -->
 <img src="static/naruwire.PNG" alt="My Image">
-<br>
+
 
 ##  🤝Developers
 
 - Backend (Node.js)
-  - 고수진 : sign in, sign up, userSchema
-  - 김승빈 : post and comment
-  - 이경원 : chat and socket.io
+  고수진 / sign in, sign up, userSchema
+  김승빈 / post and comment
+  이경원 / chat and socket.io
 - Frontend (React)
-  - 오일교
-  - 최지혁
+  오일교
+  최지혁
 <br>
 
 ##  🌟 API
 
-https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
+<!-- https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0 -->
 
 
 <table width = "1000" style="text-align:center;" >
