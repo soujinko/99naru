@@ -82,7 +82,7 @@ export default function SignupSide() {
     },)
     .then((res) => {
       console.log(res.status)
-      {res.status===200?setduplicate(true):setduplicate(false)}
+      {setduplicate(res.status === 200)}
       window.alert("확인 성공!")
 	    //todo: 성공적인 응답이 오면 저 요소 선택해서 disalbed false 로 바꿔주기
     }).catch(function(err) {
@@ -122,8 +122,8 @@ export default function SignupSide() {
           <form className={classes.form} noValidate>
             
             <TextField
-              ref={Idinput}
-              disabled={duplicate? true:false}
+
+              disabled={duplicate}
               onChange={(e) => {setId(e.target.value)}}
               variant="outlined"
               margin="normal"
@@ -135,7 +135,7 @@ export default function SignupSide() {
               autoFocus
             />
             <TextField
-              disabled={duplicate? true:false}
+              disabled={duplicate}
               onChange={(e) => {setNick(e.target.value)}}
               variant="outlined"
               margin="normal"
@@ -146,7 +146,7 @@ export default function SignupSide() {
             />
               <Button
               onClick={duplicateCheck}
-              disabled={duplicate ? true : false}
+              disabled={duplicate}
               fullWidth
               variant="contained"
               color="primary"
@@ -166,6 +166,7 @@ export default function SignupSide() {
               id="password"
               autoComplete="current-password"
               inputProps = {{ pattern: "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]"}}
+              //todo 여기랑 함수 패턴이 중복돼요
             />
             <TextField
               onChange={(e) => {setPwdCheck(e.target.value)}}
@@ -185,7 +186,7 @@ export default function SignupSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={ duplicate? false : true }
+              disabled={ !duplicate }
             >
               회원가입
             </Button>
