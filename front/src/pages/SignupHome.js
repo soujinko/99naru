@@ -147,6 +147,7 @@ export default function SignupSide() {
             //   type="password"
               id="password"
               autoComplete="current-password"
+              inputProps = {{ pattern: "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]"}}
             />
             <TextField
               onChange={(e) => {setPwdCheck(e.target.value)}}
