@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PostWrite from "../components/PostWrite";
 import PostList from "../components/PostList";
 import Header from "../components/Header";
+import Posts from "../components/Posts"
 
 const PostHome = (props) => {
   return (
@@ -11,7 +12,7 @@ const PostHome = (props) => {
         <Header>Home</Header>
         <Container>
           <PostWrite />
-          <PostList />
+          <Posts />
         </Container>
       </MainWrap>
     </React.Fragment>
