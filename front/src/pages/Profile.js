@@ -14,5 +14,4 @@ export default Profile;
 
 const Input = styled.input`
     type : "text";
-
 `;
