@@ -48,7 +48,14 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>token : {userId, nickname, expiresIn}</td>
   </tr>
   <tr>
+    <td rowspan="3">내용</td>
     <td>내용</td>
+    <td>내용</td>
+    <td>내용</td>
+    <td>내용</td>
+    <td>내용</td>
+  </tr>
+   <tr>
     <td>내용</td>
     <td>내용</td>
     <td>내용</td>
