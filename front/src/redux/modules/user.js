@@ -24,7 +24,8 @@ const loginDB = (id, pwd) => {
     .then((res) => {
       sessionStorage.setItem("MY_SESSION", res.data.token);
       dispatch(setUser(id))
-      window.location.href = "/";
+      // history.push("/main/home");
+      window.location.href = "/main/home";
     });
   }
 };
@@ -53,6 +54,8 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = null;
         sessionStorage.removeItem("MY_SESSION");
+      // window.location.reload()
+      window.location.href = "/signin"
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
