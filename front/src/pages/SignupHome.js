@@ -121,7 +121,7 @@ export default function SignupSide() {
           <form className={classes.form} noValidate>
             
             <TextField
-              disabled={duplicate? true:false}
+              disabled={duplicate}
               onChange={(e) => {setId(e.target.value)}}
               variant="outlined"
               margin="normal"
@@ -133,7 +133,7 @@ export default function SignupSide() {
               autoFocus
             />
             <TextField
-              disabled={duplicate? true:false}
+              disabled={duplicate}
               onChange={(e) => {setNick(e.target.value)}}
               variant="outlined"
               margin="normal"
@@ -144,7 +144,7 @@ export default function SignupSide() {
             />
               <Button
               onClick={duplicateCheck}
-              disabled={duplicate ? true : false}
+              disabled={duplicate}
               fullWidth
               variant="contained"
               color="primary"
@@ -183,7 +183,7 @@ export default function SignupSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={ duplicate? false : true }
+              disabled={ !duplicate }
             >
               회원가입
             </Button>
