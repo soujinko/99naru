@@ -4,7 +4,6 @@ import {actionCreators as postActions} from "../redux/modules/post";
 import { actionCreators as userActions } from "../redux/modules/user";
 import PostList from "../components/PostList";
 import axios from "axios";
-// import { jwt_decode } from "jsonwebtoken";
 
 const Main = () => {
   const parseJwt = () => {
