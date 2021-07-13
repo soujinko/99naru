@@ -54,7 +54,6 @@ export default function SignInSide() {
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
   const login = () => {
-    console.log(id,pwd)
     dispatch(userActions.loginDB(id, pwd))
   }
   const goSignup = () => {
