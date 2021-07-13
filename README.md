@@ -26,7 +26,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
 
 <table width = "1000" style="text-align:center; " >
   <tr>
-    <th  style="word-break:break-all">페이지</th>
+    <th width = "100" style="word-break:break-all">페이지</th>
     <th>기능</th>
     <th>API URL</th>
     <th>Method</th>
