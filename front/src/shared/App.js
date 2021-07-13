@@ -1,25 +1,72 @@
-import "./App.css";
 import React from "react";
-import { ConnectedRouter } from "connected-react-router";
-import { history } from "../redux/configureStore";
-import { Login, Signup, Profile, Main } from "../pages";
+import styled from "styled-components";
+
+// import { Text, Grid, Input, Image } from "./elements";
+import SideBar from "../components/SideBar";
+import ChattingBar from "../components/ChattingBar";
+import UserList from "../components/UserList";
+
+import PostHome from "../pages/PostHome";
+import ProfileHome from "../pages/ProfileHome";
+import SignInSide from "../pages/LoginHome";
+import SignUpSide from "../pages/SignupHome";
+
 import { Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 
-function App() {
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "../redux/configureStore";
 
 
+
+const App = (props) => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(postActions.getpostDB());
+  }, [])
+  const is_session = sessionStorage.getItem("MY_SESSION") ? true : false;
+  if (is_session) {
   return (
+    
     <React.Fragment>
-        <ConnectedRouter history={history}>
-          <Route path="/" exact component={Main} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/user/:id" exact component={Profile} />
-        </ConnectedRouter>
+      <ConnectedRouter history={history}>
+        <Route path="/" exact component={SignInSide} />
+        <Route path="/signup" exact component={SignUpSide} />
+        <Route path="/main"><Container>
+          <SideBar />
+          <Route path="/main/home" exact component={PostHome} />
+          <Route path="/main/user/:id" exact component={ProfileHome} />
+          <ChattingBar />
+          <UserList />
+        </Container></Route>
+      </ConnectedRouter>
     </React.Fragment>
   );
 }
+if (!is_session) {
+  return (
+    <React.Fragment>
+      <ConnectedRouter history={history}>
+        <h1>세션 만료되었습니다.</h1>
+        <Route path="/" exact component={SignInSide} />
+        <Route path="/signup" exact component={SignUpSide} />
+      </ConnectedRouter>
+    </React.Fragment>
+  )
+}
+};
+
+const Container = styled.div`
+  /* border: 1px solid #f7f9f9; */
+  background-color: #f7f9f9;
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: stretch; */
+  box-sizing: border-box;
+  overflow: hidden;
+`;
 
 export default App;

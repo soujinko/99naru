@@ -4,9 +4,26 @@ import {actionCreators as postActions} from "../redux/modules/post";
 import { actionCreators as userActions } from "../redux/modules/user";
 import PostList from "../components/PostList";
 import axios from "axios";
+// import { jwt_decode } from "jsonwebtoken";
 
 const Main = () => {
-    const dispatch = useDispatch();
+  const parseJwt = () => {
+    try {
+      return JSON.parse(atob(`${sessionStorage.getItem("MY_SESSION")}`.split('.')[1]));
+    } catch (e) {
+      return null;
+    }
+  };
+  console.log(parseJwt())
+  // const {nickname, userId} = jwt_decode(`${sessionStorage.getItem("MY_SESSION")}`);
+  // console(nickname, userId)
+  const token = sessionStorage.getItem("MY_SESSION");
+  if (token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("MY_SESSION")}`;
+  } else {
+    axios.defaults.headers.common['Authorization'] = null;
+  }
+  const dispatch = useDispatch();
     const [addpost, setaddPost] = React.useState("");
     const post_list = useSelector((state) => state.post.list);
     const is_session = sessionStorage.getItem("MY_SESSION") ? true : false;
@@ -26,7 +43,7 @@ const Main = () => {
       axios
       .post("http://localhost:3000/api/posts", 
       {text: `${addpost}`,},
-      {headers : {'Authorization': `${sessionStorage.getItem("MY_SESSION")}`}}
+      {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
       )
       .then((res) => {
         console.log(res)
