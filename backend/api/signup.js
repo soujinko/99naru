@@ -19,10 +19,6 @@ const postUserschema = Joi.object({
   // intro: Joi.string().min(3).required(),
 });
 
-//front input name='img'로 해서 실험
-router.post("/image", upload.single('image'), async (res,req) => {
-  res.send({ result: "success" });
-});
 
 // 회원가입 검사 및 등록
 router.post("/", upload.single('image'), async (req, res) => {
@@ -110,7 +106,7 @@ if (!req.file) {
   }}).exec()
 
 
-  res.status(200).send({ message: "수정이 완료되었습니다." })
+  res.status(201).send({ message: "수정이 완료되었습니다." })
 //todo 수정완료후 토큰 재발급? or 토큰제거후 로그인화면 리다이렉트후 다시 로그인?
 }}catch(err){
 console.log(err)
