@@ -25,6 +25,7 @@ export default (req, res, next) => {
   } catch (err) {
     if (err.name === "TokenExpiredError") {
       res.status(419).send({ message: "token 만료" });
+      return;
     }
     res
       .status(401)
