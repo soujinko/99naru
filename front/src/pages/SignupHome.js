@@ -67,6 +67,7 @@ export default function SignupSide() {
     },)
     .then((res) => {
       console.log(res)
+	    //todo: 성공적인 응답이 오면 저 요소 선택해서 disalbed false 로 바꿔주기
     }).catch(function(err) {
     	console.error(err)
       window.alert("형식을 맞춰주세요!")
@@ -168,6 +169,7 @@ export default function SignupSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              disabled={true}
             >
               회원가입
             </Button>
