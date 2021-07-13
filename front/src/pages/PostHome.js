@@ -23,7 +23,7 @@ const PostHome = (props) => {
   return (
     <React.Fragment>
       <MainWrap>
-        <Header>Home</Header>
+        <Header>99NARU</Header>
         <Container>
           <PostWrite />
           {post_list.length !== 0 ? post_list.map((p, idx) => {

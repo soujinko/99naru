@@ -16,13 +16,19 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import axios from "axios";
 
 const PostList = (props) => {
+  console.log(props.post_data.likedUsers.length)
   const [show, setShow] = React.useState(false);
+  const [showComment, setShowComment] = React.useState(false);
   const [editPost, setEdit] = React.useState("");
+  const show_edit_cnt = () => {setShowComment(true)};
+  const hide_edit_cnt = () => {setShowComment(false)};
   const show_edit = () => {setShow(true)};
   const hide_edit = () => {setShow(false)};
   const user_info_id = useSelector((state) => state.user.user_id);
   const post_user_id = props.post_data.userId._id
   const post_id = props.post_data._id
+  const comments = props.post_data.comments
+  console.log(comments)
   console.log(post_id)
   const modifyPost = () => {
     if (editPost===""){
@@ -105,7 +111,7 @@ const PostList = (props) => {
             <Grid>
               <IconThumbWrap>
                 <IconClickSpan>
-                  <IoThumbsUpOutline />
+                  <IoThumbsUpOutline /> {props.post_data.likedUsers.length}
                 </IconClickSpan>
               </IconThumbWrap>
             </Grid>
@@ -115,17 +121,24 @@ const PostList = (props) => {
           </Grid>
           <IconWrap>
             <IconClickSpan>
-              <IoChatbubbleEllipsesSharp />
-            </IconClickSpan>
+             {showComment ? 
+             <IoChatbubbleEllipsesSharp onClick={hide_edit_cnt} />
+             :
+             <IoChatbubbleEllipsesSharp onClick={show_edit_cnt}/> } 
+              
+            </IconClickSpan>{props.post_data.comments.length}
           </IconWrap>
         </Grid>
+      {showComment ? 
         <Grid>
-          <CommentWrite></CommentWrite>
-          {/* {props.props.comments.map((p, idx) => {
-            return <CommentList commets={p}></CommentList>
-          })} */}
-          <CommentList></CommentList>
-        </Grid>
+        {comments.map((p, idx) => {
+            return <CommentList key={idx} comments={p} post_info={props}></CommentList>
+          })}
+          <CommentWrite post_id={post_id}></CommentWrite>
+        </Grid> 
+    :<div></div>}
+
+
       </PostView>
     </React.Fragment>
   );
