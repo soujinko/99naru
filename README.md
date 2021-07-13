@@ -17,13 +17,13 @@
 
 ##  🤝Developers
 
-- Backend (Node.js)
-  고수진 / sign in, sign up, userSchema
-  김승빈 / post and comment
-  이경원 / chat and socket.io
-- Frontend (React)
-  오일교
-  최지혁
+- Backend (Node.js)  
+  고수진 / sign in, sign up, userSchema  
+  김승빈 / post and comment  
+  이경원 / chat and socket.io  
+- Frontend (React)  
+  오일교  
+  최지혁  
 <br>
 
 ##  🌟 API
@@ -31,7 +31,7 @@
 <!-- https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0 -->
 
 
-<table  width = "1000" style="text-align:center; filter:alpha(opacity=80);" >
+<table  width = "1000" style="text-align:center; color:#FFFFFF;" >
   <tr>
     <th width = "100" style="word-break:break-all">페이지</th>
     <th width = "100">기능</th>
