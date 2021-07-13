@@ -31,7 +31,7 @@
 <!-- https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0 -->
 
 
-<table  width = "1000" style="text-align:center; color:#FFFFFF;" >
+<table bgcolor = "white"  width = "1000" style="text-align:center; " >
   <tr>
     <th width = "100" style="word-break:break-all">페이지</th>
     <th width = "100">기능</th>
