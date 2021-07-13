@@ -11,16 +11,39 @@ import {
   IoTrash,
   IoSettingsOutline,
 } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import axios from "axios";
 
 const PostList = (props) => {
-  
+  const [show, setShow] = React.useState(false);
+  const [editPost, setEdit] = React.useState("");
+  const show_edit = () => {setShow(true)};
+  const hide_edit = () => {setShow(false)};
+  const user_info_id = useSelector((state) => state.user.user_id);
+  const post_user_id = props.post_data.userId._id
+  const post_id = props.post_data._id
+  console.log(post_id)
+  const modifyPost = () => {
+    if (editPost===""){
+        window.alert("칸 채워주세요!")
+        return;
+    }
+    axios
+    .put(`http://localhost:3000/api/posts/${post_id}`, {
+        text: `${editPost}`,
+    },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
+    .then((res) => {
+      console.log(res)
+    });
+    // dispatch(postActions.getpostDB());
+    window.location.reload()
+    console.log(props)
+}
+
   const deletePost = () => {
-    console.log(props.props._id)
   axios
-    .delete(`http://localhost:3000/api/posts/${props.props._id}`,
+    .delete(`http://localhost:3000/api/posts/${props.post_data._id}`,
     {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
   ).then((response) => {
     console.log(response.data)
@@ -36,30 +59,45 @@ const PostList = (props) => {
         <Grid is_flex padding="16px 16px 0px 16px" width="100%">
           <Grid is_flex width="100%" left>
             <Image shape="circle" src={props.src} />
-            <Text bold>{props.props.userId}</Text>
+            <Text bold>{props.post_data.userId.nickname}</Text>
           </Grid>
           <Grid is_flex width="100%">
             <Grid is_flex width="100%">
               <Grid right>
-                <Text>{props.props.created_at}</Text>
+                <Text>{props.post_data.created_at.split('T')[0]}</Text>
               </Grid>
+              {post_user_id===user_info_id ? 
               <Grid is_flex width="100" left padding="0px 10px">
-                <IconWrap>
-                  <IoSettingsOutline />
-                </IconWrap>
-                <IconWrap>
-                  <IoTrash onClick={deletePost} />
-                </IconWrap>
-              </Grid>
+              <IconWrap>
+                {show ? <IoSettingsOutline onClick={hide_edit} />:<IoSettingsOutline onClick={show_edit} />}
+
+              </IconWrap>
+              <IconWrap>
+                <IoTrash onClick={deletePost} />
+              </IconWrap>
+            </Grid>
+              :<div></div> }
             </Grid>
           </Grid>
         </Grid>
         <Grid padding="16px" is_flex>
           {/* <Grid width="10%"></Grid> */}
           <Grid width="100%" bg="#F7F9F9" padding="8px">
+            
+            {show ? 
+            <div>
+              <Input _onChange={(e) => {setEdit(e.target.value)}} placeholder="게시글 수정 중.." multiLine>
+              </Input>
+            <Button width="15%" _onClick={modifyPost}>
+              수정
+              </Button>
+            </div>
+            :
             <Text padding="5px 10px" size="18px">
-              {props.props.text}
-            </Text>
+            {props.post_data.text}
+          </Text>
+            }
+
           </Grid>
         </Grid>
         <Grid is_flex padding="0px 26px" width="100%">
@@ -83,9 +121,9 @@ const PostList = (props) => {
         </Grid>
         <Grid>
           <CommentWrite></CommentWrite>
-          {props.props.comments.map((p, idx) => {
+          {/* {props.props.comments.map((p, idx) => {
             return <CommentList commets={p}></CommentList>
-          })}
+          })} */}
           <CommentList></CommentList>
         </Grid>
       </PostView>

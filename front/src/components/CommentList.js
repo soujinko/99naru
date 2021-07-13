@@ -26,7 +26,7 @@ const CommentList = (props) => {
         </Grid>
         <Grid is_flex width="100%">
           <Grid right>
-            <Text>작성 시간</Text>
+            {/* <Text>작성 시간</Text> */}
           </Grid>
           <Grid is_flex width="100" padding="0px 10px">
             <IconWrap>
