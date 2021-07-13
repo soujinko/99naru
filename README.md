@@ -24,7 +24,7 @@ https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
 https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
 
 
-<table width = "1000" >
+<table width = "1000" style="margin:auto; " >
   <tr>
     <th>페이지</th>
     <th>기능</th>
