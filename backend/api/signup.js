@@ -103,8 +103,8 @@ if (!req.file) {
   const newprofileImage = req.file.location;
   const newprofileImageKey = req.file.key;
   await User.findByIdAndUpdate( userId, {$set: {
-    nickname : newnickname,
-    password : newpassword,
+    nickname : nickname,
+    password : password,
     profileImage : newprofileImage,
     profileImageKey : newprofileImageKey,
   }}).exec()
