@@ -48,7 +48,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>token : {userId, nickname, expiresIn}</td>
   </tr>
   <tr>
-    <td rowspan="3">회원가입</td>
+    <td rowspan="2">회원가입</td>
     <td>중복확인</td>
     <td>/duplicate</td>
     <td>POST</td>
@@ -64,9 +64,9 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
   </tr>
 
   <tr>
-    <td rowspan="5">게시물</td>
+    <td rowspan="4">게시물</td>
     <td>게시물 보여주기</td>
-    <td  rowspan="3">/posts</td>
+    <td  rowspan="2">/posts</td>
     <td>GET</td>
     <td></td>
     <td>posts [] {text, userId, created_at, comments}</td>
@@ -79,7 +79,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
   </tr>
   <tr>
     <td>게시물 수정</td>
-    <td  rowspan="3">/posts/:postId</td>
+    <td  rowspan="2">/posts/:postId</td>
     <td>PUT</td>
     <td>text</td>
     <td>201</td>
