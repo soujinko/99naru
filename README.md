@@ -17,11 +17,11 @@
 
 ##  🤝Developers
 
-- Backend (Node.js)  
+- Backend 
   고수진 / sign in, sign up, userSchema  
   김승빈 / post and comment  
   이경원 / chat and socket.io  
-- Frontend (React)  
+- Frontend 
   오일교  
   최지혁  
 <br>
