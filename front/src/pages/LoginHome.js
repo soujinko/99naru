@@ -57,6 +57,9 @@ export default function SignInSide() {
     console.log(id,pwd)
     dispatch(userActions.loginDB(id, pwd))
   }
+  const goSignup = () => {
+    window.location.href = "/signup"
+  }
 
 
 
@@ -105,6 +108,14 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}>
               로그인
+            </Button>
+            <Button
+              onClick={goSignup}
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}>
+              회원가입 하러가기
             </Button>
 
           </form>

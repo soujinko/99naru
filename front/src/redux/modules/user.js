@@ -55,7 +55,7 @@ export default handleActions(
         draft.user = null;
         sessionStorage.removeItem("MY_SESSION");
       // window.location.reload()
-      window.location.href = "/signin"
+      window.location.href = "/"
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },

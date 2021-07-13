@@ -18,14 +18,20 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 
+
+
 const App = (props) => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(postActions.getpostDB());
+  }, [])
   const is_session = sessionStorage.getItem("MY_SESSION") ? true : false;
   if (is_session) {
   return (
     
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Route path="/signin" exact component={SignInSide} />
+        <Route path="/" exact component={SignInSide} />
         <Route path="/signup" exact component={SignUpSide} />
         <Route path="/main"><Container>
           <SideBar />
@@ -43,7 +49,7 @@ if (!is_session) {
     <React.Fragment>
       <ConnectedRouter history={history}>
         <h1>세션 만료되었습니다.</h1>
-        <Route path="/signin" exact component={SignInSide} />
+        <Route path="/" exact component={SignInSide} />
         <Route path="/signup" exact component={SignUpSide} />
       </ConnectedRouter>
     </React.Fragment>

@@ -55,6 +55,9 @@ export default function SignupSide() {
   const [pwd, setPwd] = React.useState("");
   const [pwd_check, setPwdCheck] = React.useState("");
   const [nick, setNick] = React.useState("");
+  const goSignin = () => {
+    window.location.href = "/"
+  }
   const signup = () => {
   if (id==="" || pwd==="" || pwd_check==="" || nick==="") {
     window.alert("전부 채워주세요!");
@@ -143,6 +146,14 @@ export default function SignupSide() {
               className={classes.submit}
             >
               회원가입
+            </Button>
+            <Button
+              onClick={goSignin}
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}>
+              로그인 하러가기
             </Button>
           </form>
         </div>
