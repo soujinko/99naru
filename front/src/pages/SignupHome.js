@@ -81,7 +81,7 @@ export default function SignupSide() {
     },)
     .then((res) => {
       console.log(res.status)
-      {res.status===200?setduplicate(true):setduplicate(false)}
+      {setduplicate(res.status === 200)}
       window.alert("확인 성공!")
 	    //todo: 성공적인 응답이 오면 저 요소 선택해서 disalbed false 로 바꿔주기
     }).catch(function(err) {
