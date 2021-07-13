@@ -28,7 +28,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
   <tr>
     <th width = "100" style="word-break:break-all">페이지</th>
     <th width = "100">기능</th>
-    <th>API URL</th>
+    <th width = "200">API URL</th>
     <th>Method</th>
     <th>request</th>
     <th>response</th>
@@ -39,7 +39,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>/signin</td>
     <td>POST</td>
     <td>loginId, password</td>
-    <td style="font-family:Lucida Console, monospace;">token : {userId, nickname, expiresIn}</td>
+    <td>token : {userId, nickname, expiresIn}</td>
   </tr>
   <tr>
     <td rowspan="2">회원가입</td>
@@ -54,7 +54,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>/signup</td>
     <td>POST</td>
     <td>loginId, password, nickname</td>
-    <td style="font-family:monospace">201, {message: '회원가입을 축하합니다.'}</td>
+    <td>201, {message: '회원가입을 축하합니다.'}</td>
   </tr>
 
   <tr>
@@ -63,7 +63,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td  rowspan="2">/posts</td>
     <td>GET</td>
     <td></td>
-    <td style="font-family:Monospace">posts [] {text, userId, created_at, comments}</td>
+    <td>posts [] {text, userId, created_at, comments}</td>
   </tr>
    <tr>
     <td>게시물<br>작성</td>
@@ -135,7 +135,7 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td rowspan="2">/profile</td>
     <td>GET</td>
     <td>userId</td>
-    <td style="font-family:Monospace">{ profile }</td>
+    <td>{ profile }</td>
   </tr>
   <tr>
     <td>내정보<br>수정하기</td>
@@ -146,20 +146,64 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
 </table>
 
 ## 4.⚡ 기술스텍 및 라이브러리
-| 종류 | 이름 |
-|:---:|:---:|
-| 개발 언어 | Javascript  |
-| 데이터베이스 | MongoDB |
-| 웹 프레임워크 | Express |
-| JS Module | ESM |
+
+<table width = "400" style="text-align:center; " >
+  <tr>
+    <th width = "200" >type</th>
+    <th width = "200">name</th>
+
+  </tr>
+  <tr>
+    <td >개발 언어</td>
+    <td>Javascript</td>
+  </tr>
+  <tr>
+    <td >데이터베이스</td>
+    <td>MongoDB</td>
+  </tr>
+  <tr>
+    <td >개발 언어</td>
+    <td>웹 프레임워크</td>
+  </tr>
+  <tr>
+    <td >JS Module</td>
+    <td>ESM</td>
+  </tr>
+</table>
 
 
-| 라이브러리 | Appliance |
-|:---:|:---:|
-| React | Front |
-| dotenv | 포트값외 중요한값 보안처리 |
-| jsonwebtoken | 암호화 |
-| Mongoose | MongoDB 데이터 모델링 |
-| Cors | Request Resource 제한 |
-| Multer | multipart/form-data 헨들링 |
-| Socket.io | Chat and Notification |
+<table width = "400" style="text-align:center; " >
+  <tr>
+    <th width = "200" >라이브러리</th>
+    <th width = "200">Appliance</th>
+
+  </tr>
+  <tr>
+    <td >React</td>
+    <td>Front</td>
+  </tr>
+  <tr>
+    <td >dotenv</td>
+    <td>포트값외 중요한값 보안처리</td>
+  </tr>
+  <tr>
+    <td >jsonwebtoken</td>
+    <td>암호화</td>
+  </tr>
+  <tr>
+    <td >Mongoose</td>
+    <td>MongoDB 데이터 모델링</td>
+  </tr>
+  <tr>
+    <td >Cors</td>
+    <td>Request Resource 제한</td>
+  </tr>
+  <tr>
+    <td >Multer</td>
+    <td>multipart/form-data 헨들링</td>
+  </tr>
+  <tr>
+    <td >Socket.io</td>
+    <td>Chat and Notification</td>
+  </tr>
+</table>
