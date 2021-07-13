@@ -43,25 +43,54 @@ https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2
     <td>로그인</td>
     <td>로그인하기</td>
     <td>/signin</td>
-    <td>`POST`</td>
+    <td>POST</td>
     <td>loginId, password</td>
     <td>token : {userId, nickname, expiresIn}</td>
   </tr>
   <tr>
-    <td rowspan="3">내용</td>
-    <td>내용</td>
-    <td>내용</td>
-    <td>내용</td>
-    <td>내용</td>
-    <td>내용</td>
+    <td rowspan="3">회원가입</td>
+    <td>중복확인</td>
+    <td>/duplicate</td>
+    <td>POST</td>
+    <td>loginId, nickname</td>
+    <td>201, 400</td>
   </tr>
    <tr>
-    <td>내용</td>
-    <td>내용</td>
-    <td>내용</td>
-    <td>내용</td>
-    <td>내용</td>
+    <td>회원가입하기</td>
+    <td>/signup</td>
+    <td>POST</td>
+    <td>loginId, password, nickname</td>
+    <td>201, {message: '회원가입을 축하합니다.'}</td>
   </tr>
+
+  <tr>
+    <td rowspan="5">게시물</td>
+    <td>게시물 보여주기</td>
+    <td  rowspan="3">/posts</td>
+    <td>GET</td>
+    <td></td>
+    <td>posts [] {text, userId, created_at, comments}</td>
+  </tr>
+   <tr>
+    <td>게시물 작성</td>
+    <td>POST</td>
+    <td>text</td>
+    <td>201</td>
+  </tr>
+  <tr>
+    <td>게시물 수정</td>
+    <td  rowspan="3">/posts/:postId</td>
+    <td>PUT</td>
+    <td>text</td>
+    <td>201</td>
+  </tr>
+   <tr>
+    <td>게시물 삭제</td>
+    <td>DELETE</td>
+    <td>postId</td>
+    <td>201</td>
+  </tr>
+
 </table>
 
 ## 4.⚡ 기술스텍 및 라이브러리
