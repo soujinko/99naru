@@ -3,9 +3,21 @@ import styled from "styled-components";
 import { Text, Image, Grid } from "../elements";
 import io from "socket.io-client";
 import TextField from "@material-ui/core/TextField";
+import jwt_decode from "jwt-decode";
 
 const ChattingBar = (props) => {
-  const [state, setState] = useState({ message: "" });
+  const token = sessionStorage.getItem("MY_SESSION");
+  const decoded = jwt_decode(token);
+  const nickname = decoded.nickname;
+  const user_id = decoded.userId;
+  const date = new Date().toLocaleTimeString();
+  console.log(date);
+
+  const [state, setState] = useState({
+    message: "",
+    nickname: nickname,
+    date: date,
+  });
   const [chat, setChat] = useState([]);
 
   const socketRef = useRef();
@@ -13,8 +25,7 @@ const ChattingBar = (props) => {
   useEffect(() => {
     socketRef.current = io.connect("http://localhost:3000");
     socketRef.current.on("receiveMsg", ({ nickname, message, date }) => {
-      const date1 = "2021-07-14"
-      setChat([...chat, { nickname, message, date1 }]);
+      setChat([...chat, { nickname, message, date }]);
     });
     return () => socketRef.current.disconnect();
   }, [chat]);
@@ -24,17 +35,19 @@ const ChattingBar = (props) => {
   };
 
   const onMessageSubmit = (e) => {
-    const { message } = state;
-    socketRef.current.emit("sendMsg", { message });
+    const { message, nickname, date } = state;
+    socketRef.current.emit("sendMsg", { message, nickname, date });
     e.preventDefault();
     setState({ message: "" });
   };
 
   const renderChat = () => {
-    return chat.map(({ nickname, message, date1 }, index) => (
+    return chat.map(({ nickname, message, date }, index) => (
       <div key={index}>
         <h3>
-          {nickname}: <span>{message}</span><br></br><span>( {date1} )</span>
+          {nickname}: <span>{message}</span>
+          <br></br>
+          <span>( {date} )</span>
         </h3>
       </div>
     ));
