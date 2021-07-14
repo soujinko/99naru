@@ -14,19 +14,20 @@ const CommentWrite = (props) => {
         window.alert("채워주세요!")
         return;
     } 
-    console.log(comments)
-    console.log(post_id)
-    console.log(props.post_id)
-    axios
-    .post("http://localhost:3000/api/comments", {
-      postId: `${props.post_id}`,
-      text: `${comments}`,
-    },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
-    .then((res) => {
-      console.log(res)
-    });
-    dispatch(postActions.getpostDB());
-    window.location.reload()
+    dispatch(postActions.addCommentDB(props.post_id,comments))
+    // console.log(comments)
+    // console.log(post_id)
+    // console.log(props.post_id)
+    // axios
+    // .post("http://localhost:3000/api/comments", {
+    //   postId: `${props.post_id}`,
+    //   text: `${comments}`,
+    // },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
+    // .then((res) => {
+    //   console.log(res)
+    // });
+    // dispatch(postActions.getpostDB());
+    // window.location.reload()
 }
 
   return (

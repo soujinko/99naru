@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import axios from "axios";
 
+
 const PostList = (props) => {
   const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
@@ -33,28 +34,14 @@ const PostList = (props) => {
         window.alert("칸 채워주세요!")
         return;
     }
-    axios
-    .put(`http://localhost:3000/api/posts/${post_id}`, {
-        text: `${editPost}`,
-    },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
-    .then((res) => {
-      console.log(res)
-    });
-    dispatch(postActions.modifyPost(props.post_data));
-    // window.location.reload()
-}
+    dispatch(postActions.modifypostDB(post_id,editPost))
+      hide_edit()
+    
 
-  const deletePost = () => {
-  axios
-    .delete(`http://localhost:3000/api/posts/${props.post_data._id}`,
-    {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
-  ).then((response) => {
-    console.log(response.data)
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    window.location.reload();
+}
+console.log()
+  const deletePost = () => { //여기서 호출
+    dispatch(postActions.deletePostDB(props.post_data._id))
   }
   return (
     <React.Fragment>

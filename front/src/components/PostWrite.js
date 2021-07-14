@@ -14,17 +14,6 @@ const PostWrite = (props) => {
   console.log(data.post.list)
   const addPost = () => {
     dispatch(postActions.addPostDB(text, data.post.list));
-    // dispatch(postActions.addPostDB(text));
-    // console.log(addPost)
-    // axios
-    //   .post("http://localhost:3000/api/posts",
-    //   {text: `${addPost}`,},
-    //   {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
-    //   )
-    //   .then((res) => {
-    //     console.log(res)
-    //   });
-    //   window.location.reload()
   }
 
 

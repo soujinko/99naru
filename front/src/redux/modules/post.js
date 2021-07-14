@@ -45,21 +45,47 @@ const addPostDB = (text, list) => {
     )
     .then((res) => {
       console.log(res)
+      axios
+      .get('http://localhost:3000/api/posts',
+    {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
+    ).then((response) => {
+      console.log(response.data)
+      dispatch(setPost(response.data))
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     });
+
+  }
+  }
+
+  const deletePostDB = (post_id) => {
+    return function (dispatch,getState,{history}){
     axios
-    .get('http://localhost:3000/api/posts',
-  {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
-  ).then((response) => {
-    console.log(response.data)
-    dispatch(setPost(response.data))
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
-  }
+      .delete(`http://localhost:3000/api/posts/${post_id}`,
+      {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
+    ).then((res) => {
+      console.log(res)
+      axios
+      .get('http://localhost:3000/api/posts',
+    {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
+    ).then((response) => {
+      console.log(response.data)
+      dispatch(setPost(response.data)) //디스패치
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      // window.location.reload();
+      history.replace("/main/home");
 
-
+    }  
+    }
 
 
 
@@ -71,10 +97,47 @@ const modifypostDB = (post_id, editPost) => {
       },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
       .then((res) => {
         console.log(res)
+        axios
+        .get('http://localhost:3000/api/posts',
+      {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
+      ).then((response) => {
+        console.log(response.data)
+        dispatch(setPost(response.data))
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       });
-      dispatch(postActions.modifyPost());
+
+
     }
 };
+
+const addCommentDB = (postId, comments) => {
+  return function (dispatch, getState, {history}){
+    axios
+    .post("http://localhost:3000/api/comments", {
+      postId: postId,
+      text: comments,
+    },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
+    .then((res) => {
+      axios
+        .get('http://localhost:3000/api/posts',
+      {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
+      ).then((response) => {
+        console.log(response.data)
+        dispatch(setPost(response.data))
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+    
+  }
+
+}
+
+
 
 export default handleActions(
   {
@@ -109,6 +172,8 @@ const actionCreators = {
   getpostDB,
   modifypostDB,
   addPostDB,
+  deletePostDB,
+  addCommentDB,
 };
 
 export { actionCreators };
