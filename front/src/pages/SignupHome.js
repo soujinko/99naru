@@ -133,7 +133,6 @@ export default function SignupSide() {
               fullWidth
               id="nickname"
               label="NickName"
-              autoFocus
             />
               <Button
               onClick={duplicateCheck}
