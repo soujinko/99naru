@@ -17,9 +17,9 @@ const UserList = (props) => {
     socketRef.current = io.connect("http://localhost:3000");
     socketRef.current.emit("join", { nickname });
     socketRef.current.on("currentOn", (currentOn) => {
-      console.log(currentOn);
+      console.log(currentOn); // 이게 나와야 하나씩 나올텐데
       console.log({ currentOn });
-      setCurrentOn([[currentOn]]);
+      setCurrentOn(currentOn);
     });
     return () => socketRef.current.disconnect();
   }, []);
@@ -28,28 +28,31 @@ const UserList = (props) => {
     if (!currentOn.length) {
       return <div>로딩 중...</div>;
     }
+    console.log(currentOn)
+    console.log(typeof currentOn)
     return currentOn.map((current, index) => (
-      <div key={index}>
-        <h3>
-          <span>
-            {current}
-            {current.nickname}
-          </span>
-          <br></br>
-        </h3>
-      </div>
+      <Wrapper>
+        <Grid is_flex>
+            <Grid is_flex left key={index}>
+              <Image shape="circle" />
+              <Text>{current}</Text>
+            </Grid>
+          <Grid width="0%"></Grid>
+        </Grid>
+      </Wrapper>
     ));
   };
   const emptyspace = () => {
     return (null);
   };
   return (
-    <div className="card">
-    {emptyspace()}
-      <div className="render-chat">
+    <Container>
+      <ChattingMode>Users</ChattingMode>
+      <UserWrap>
+        {emptyspace()}
         {showCurrentOn()}
-      </div>
-    </div>
+      </UserWrap>
+    </Container>
   );
 
   return (
@@ -59,109 +62,7 @@ const UserList = (props) => {
         <UserWrap>
           <Wrapper>
             <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-          <Wrapper>
-            <Grid is_flex>
-              <Grid is_flex left>
-                <Image shape="circle" />
-                <Text>오늘은 코딩왕</Text>
-              </Grid>
+
               <Grid width="0%"></Grid>
             </Grid>
           </Wrapper>

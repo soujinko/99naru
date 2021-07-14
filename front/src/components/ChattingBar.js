@@ -12,7 +12,6 @@ const ChattingBar = (props) => {
   const nickname = decoded.nickname;
   const user_id = decoded.userId;
   const date = new Date().toLocaleTimeString();
-  console.log(date);
 
   const [state, setState] = useState({
     message: "",
@@ -52,6 +51,7 @@ const ChattingBar = (props) => {
     if (!chats.length) {
       return <div>로딩 중...</div>;
     }
+    console.log(chats);
     return chats.map((chatting, index) => (
       <Grid key={index}>
         <Image shape="circle" />
