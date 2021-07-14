@@ -64,8 +64,7 @@ io.on("connection", (socket) => {
 
 
   //메세지 주고받기(프론트: 보내는 유저info, 보내는 메세지)
-  socket.on("sendMsg", async ({message, nickname}) => {
-    const date = currentDate
+  socket.on("sendMsg", async ({message, nickname, date}) => {
 
     const chatlog = {
       messages : message,

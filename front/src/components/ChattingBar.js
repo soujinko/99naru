@@ -10,11 +10,14 @@ const ChattingBar = (props) => {
   const decoded = jwt_decode(token);
   const nickname = decoded.nickname;
   const user_id = decoded.userId;
-  console.log(nickname);
-  console.log(user_id);
-  console.log(token);
+  const date = new Date().toLocaleTimeString();
+  console.log(date);
 
-  const [state, setState] = useState({ message: "", nickname: nickname });
+  const [state, setState] = useState({
+    message: "",
+    nickname: nickname,
+    date: date,
+  });
   const [chat, setChat] = useState([]);
 
   const socketRef = useRef();
@@ -22,8 +25,7 @@ const ChattingBar = (props) => {
   useEffect(() => {
     socketRef.current = io.connect("http://localhost:3000");
     socketRef.current.on("receiveMsg", ({ nickname, message, date }) => {
-      const date1 = "2021-07-14";
-      setChat([...chat, { nickname, message, date1 }]);
+      setChat([...chat, { nickname, message, date }]);
     });
     return () => socketRef.current.disconnect();
   }, [chat]);
@@ -33,19 +35,19 @@ const ChattingBar = (props) => {
   };
 
   const onMessageSubmit = (e) => {
-    const { message, nickname } = state;
-    socketRef.current.emit("sendMsg", { message, nickname });
+    const { message, nickname, date } = state;
+    socketRef.current.emit("sendMsg", { message, nickname, date });
     e.preventDefault();
     setState({ message: "" });
   };
 
   const renderChat = () => {
-    return chat.map(({ nickname, message, date1 }, index) => (
+    return chat.map(({ nickname, message, date }, index) => (
       <div key={index}>
         <h3>
           {nickname}: <span>{message}</span>
           <br></br>
-          <span>( {date1} )</span>
+          <span>( {date} )</span>
         </h3>
       </div>
     ));
