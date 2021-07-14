@@ -11,8 +11,11 @@ const PostWrite = (props) => {
   const dispatch = useDispatch();
   const [text, setTest] = React.useState("");
   
-  console.log(data.post.list)
   const addPost = () => {
+    if(text===""){
+      window.alert("칸을 채워주세요!")
+      return;
+    }
     dispatch(postActions.addPostDB(text, data.post.list));
   }
 

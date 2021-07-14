@@ -15,26 +15,13 @@ const CommentWrite = (props) => {
         return;
     } 
     dispatch(postActions.addCommentDB(props.post_id,comments))
-    // console.log(comments)
-    // console.log(post_id)
-    // console.log(props.post_id)
-    // axios
-    // .post("http://localhost:3000/api/comments", {
-    //   postId: `${props.post_id}`,
-    //   text: `${comments}`,
-    // },{headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}})
-    // .then((res) => {
-    //   console.log(res)
-    // });
-    // dispatch(postActions.getpostDB());
-    // window.location.reload()
 }
 
   return (
     <React.Fragment>
-      <Grid padding="16px" is_flex>
+      <Grid padding="5px" is_flex height="10px">
         <Input _onChange={(e) => {setComments(e.target.value)}} placeholder="댓글 내용을 입력해주세요" />
-        <Button _onClick={addComment} type="text" width="100px" margin="0px 2px 0px 2px">
+        <Button _onClick={addComment} type="text" width="80px" margin="0px 2px 0px 2px">
           작성하기
         </Button>
       </Grid>

@@ -36,11 +36,8 @@ const PostList = (props) => {
     }
     dispatch(postActions.modifypostDB(post_id,editPost))
       hide_edit()
-    
-
 }
-console.log()
-  const deletePost = () => { //여기서 호출
+  const deletePost = () => {
     dispatch(postActions.deletePostDB(props.post_data._id))
   }
   return (
