@@ -49,6 +49,7 @@ io.on("connection", (socket) => {
         socketId : socket.id
       }
       if (currentOn.indexOf(userNickname) === -1) {  //현재 접속자에 유저아이디가 없으면 추가
+        currentOnUserInfo.push(userSocketId)
         currentOn.push(userNickname);
         io.emit('currentOn', currentOn); // 현재 접속자 리스트 업데이트
       }else{                      // refresh 할때마다 socket.id가 바뀌므로 같이 업데이트 해주는작업
@@ -158,6 +159,7 @@ io.on("connection", (socket) => {
         currentOnUserInfo.splice(currentOnUserInfo[i],1)
       }
     }
+    io.emit('currentOn', currentOn);
     console.log('나감');    // todo 브라우저를 끄거나 탭을 닫으면 disconnect 작동하는지 검사
   });
 });

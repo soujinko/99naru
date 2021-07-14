@@ -40,12 +40,18 @@ const UserList = (props) => {
       </div>
     ));
   };
-
+  const emptyspace = () => {
+    return (null);
+  };
   return (
     <div className="card">
-      <div className="render-chat">{showCurrentOn()}</div>
+    {emptyspace()}
+      <div className="render-chat">
+        {showCurrentOn()}
+      </div>
     </div>
   );
+
   return (
     <React.Fragment>
       <Container>
