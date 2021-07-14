@@ -143,6 +143,7 @@ const deleteCommentDB = (postId, commentId) => {
     .delete("http://localhost:3000/api/comments", {
       postId: postId,
       commentId: commentId,
+
 	    headers: {
       	Authorization: `Bearer ${sessionStorage.getItem("MY_SESSION")}`
 	    }
