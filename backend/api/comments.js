@@ -22,12 +22,15 @@ router.delete('/:commentId', (req, res) => {
 	// Only implement above if 대댓글 is allowed
 	const { commentId } = req.params
 	const { postId } = req.body
+	console.log('포스트 아이디', postId)//
 	Comment.findByIdAndDelete(commentId).exec().then(() => {
-		Post.findById(postId).exec().then(post => {
+		return Post.findById(postId).exec().then(post => {
+			console.log(post.comments.id(commentId))
 			post.comments.id(commentId).remove()
-			return res.sendStatus(200)
+			post.save().then(() => {
+				res.sendStatus(200)
+			})
 		})
-		return res.sendStatus(400)
 	}).catch(err => {
 		console.error(err)
 		res.status(400).json({
