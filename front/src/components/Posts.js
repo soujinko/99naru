@@ -16,19 +16,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import axios from "axios";
 
 const PostList = (props) => {
-  console.log(props.post_data.created_at)
-  const dateD = props.post_data.created_at.split("T")[0].split("-")
-  const dateT = props.post_data.created_at.split("T")[1].split(":")
-  console.log(dateD, dateT)
-  console.log(dateD[0],dateD[1],dateD[2],dateD[2],dateT[0],dateT[1])
-  console.log(dateT)
- console.log(parseInt(dateD[0]))
- console.log(parseInt(dateD[1]))
- console.log(parseInt(dateD[2]))
- console.log(parseInt(dateT[0]))
- console.log(parseInt(dateT[1]))
-  
-
+  console.log(props)
   const [show, setShow] = React.useState(false);
   const [showComment, setShowComment] = React.useState(false);
   const [editPost, setEdit] = React.useState("");
