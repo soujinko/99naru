@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import PostWrite from "../components/PostWrite";
-// import PostList from "../components/PostList";
 import Header from "../components/Header";
 import Posts from "../components/Posts"
 import jwt_decode from "jwt-decode"; // install jwt-decode for token decode
-
 import {useSelector, useDispatch} from "react-redux";
 import {actionCreators as postActions} from "../redux/modules/post";
 

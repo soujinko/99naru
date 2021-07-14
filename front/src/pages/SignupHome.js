@@ -13,10 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import {IdCheck, NickCheck, pwdCheck} from '../shared/common';
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import axios from 'axios';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -116,15 +115,14 @@ export default function SignupSide() {
           <Typography component="h1" variant="h5">
             회원가입
           </Typography>
-          <form className={classes.form} noValidate>
-            
-            <TextField
+          <form className={classes.form}>
 
+            <TextField
               disabled={duplicate}
               onChange={(e) => {setId(e.target.value)}}
               variant="outlined"
               margin="normal"
-              // required
+              required
               fullWidth
               id="ID"
               label="ID"
@@ -136,10 +134,11 @@ export default function SignupSide() {
               onChange={(e) => {setNick(e.target.value)}}
               variant="outlined"
               margin="normal"
-              // required
+              required
               fullWidth
               id="nickname"
               label="NickName"
+              autoFocus
             />
               <Button
               onClick={duplicateCheck}
@@ -155,7 +154,7 @@ export default function SignupSide() {
               onChange={(e) => {setPwd(e.target.value)}}
               variant="outlined"
               margin="normal"
-              // required
+              required
               fullWidth
               name="password"
               label="Password"
@@ -169,7 +168,7 @@ export default function SignupSide() {
               onChange={(e) => {setPwdCheck(e.target.value)}}
               variant="outlined"
               margin="normal"
-              // required
+              required
               fullWidth
               name="password"
               label="Password"
