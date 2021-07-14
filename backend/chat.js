@@ -24,11 +24,21 @@ const deleteMaxChat = async () => {
   };
 };
 
+const showChatLog = async () => {
+  try{
+    const chats = await Chat.find().sort('-order').exec()
+    io.emit('chatLog', chats)
+  }catch (err) {
+    console.error(err);
+  };
+};
+
 const currentOn = [];
 const currentOnUserInfo=[];
 dotenv.config()
 io.on("connection", (socket) => {
   deleteMaxChat()
+  showChatLog()
   const currentDate = JSON.stringify(new Date());
   io.emit('currentOn', currentOn); // (현재 접속자 리스트) 게시물 업데이트때문에 refresh 할일이 많아서 처음에 넣어줌.
 

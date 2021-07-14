@@ -4,6 +4,7 @@ import { Text, Image, Grid } from "../elements";
 import io from "socket.io-client";
 import TextField from "@material-ui/core/TextField";
 import jwt_decode from "jwt-decode";
+import ChatLog from "./ChatLog";
 
 const ChattingBar = (props) => {
   const token = sessionStorage.getItem("MY_SESSION");
@@ -19,11 +20,17 @@ const ChattingBar = (props) => {
     date: date,
   });
   const [chat, setChat] = useState([]);
+  const [chats, setChats] = useState([]);
 
   const socketRef = useRef();
 
   useEffect(() => {
     socketRef.current = io.connect("http://localhost:3000");
+    socketRef.current.on("chatLog", (chats) => {
+      console.log(chats);
+      console.log({ chats });
+      setChats([...chats, { chats }]);
+    });
     socketRef.current.on("receiveMsg", ({ nickname, message, date }) => {
       setChat([...chat, { nickname, message, date }]);
     });
@@ -38,26 +45,47 @@ const ChattingBar = (props) => {
     const { message, nickname, date } = state;
     socketRef.current.emit("sendMsg", { message, nickname, date });
     e.preventDefault();
-    setState({ message: "" });
+    setState({ message: "", nickname: nickname, date: date });
   };
 
-  const renderChat = () => {
-    return chat.map(({ nickname, message, date }, index) => (
+  const showChatLog = () => {
+    if (!chats.length) {
+      return <div>로딩 중...</div>;
+    }
+    return chats.map((chatting, index) => (
       <div key={index}>
         <h3>
-          {nickname}: <span>{message}</span>
+          <span>
+            {chatting.nickname}: {chatting.message}
+          </span>
           <br></br>
-          <span>( {date} )</span>
+          <span>{chatting.date}</span>
         </h3>
       </div>
     ));
   };
 
+  // const renderChat = () => {
+  //   console.log(chat);
+  //   return chat.map(({ nickname, message, date }, index) => (
+  //     <div key={index}>
+  //       <h3>
+  //         {nickname}:2 <span>{message}</span>
+  //         <br></br>
+  //         <span>( {date} )</span>
+  //       </h3>
+  //     </div>
+  //   ));
+  // };
+
   return (
     <div className="card">
       <div className="render-chat">
         <h1>Chat Log</h1>
-        {renderChat()}
+
+        {/* <ChatLog /> */}
+        {/* {renderChat()} */}
+        {showChatLog()}
       </div>
       <form onSubmit={onMessageSubmit}>
         <h1>Messenger</h1>
