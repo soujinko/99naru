@@ -56,7 +56,7 @@ const ChattingBar = (props) => {
       <div key={index}>
         <h3>
           <span>
-            {chatting.nickname}: {chatting.message}
+            {chatting.nickname} {chatting.message}
           </span>
           <br></br>
           <span>{chatting.date}</span>
@@ -99,7 +99,7 @@ const ChattingBar = (props) => {
             label="Message"
           />
         </div>
-        <button>Send Message</button>
+        {/* <button>Send Message</button> */}
       </form>
     </div>
   );

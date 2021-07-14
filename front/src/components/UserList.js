@@ -1,9 +1,51 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Text, Image, Grid } from "../elements";
 import { Wrapper } from "../elements";
+import io from "socket.io-client";
+import jwt_decode from "jwt-decode";
 
 const UserList = (props) => {
+  const token = sessionStorage.getItem("MY_SESSION");
+  const decoded = jwt_decode(token);
+  const nickname = decoded.nickname;
+  const [currentOn, setCurrentOn] = useState([]);
+
+  const socketRef = useRef();
+
+  useEffect(() => {
+    socketRef.current = io.connect("http://localhost:3000");
+    socketRef.current.emit("join", { nickname });
+    socketRef.current.on("currentOn", (currentOn) => {
+      console.log(currentOn);
+      console.log({ currentOn });
+      setCurrentOn([[currentOn]]);
+    });
+    return () => socketRef.current.disconnect();
+  }, []);
+
+  const showCurrentOn = (props) => {
+    if (!currentOn.length) {
+      return <div>로딩 중...</div>;
+    }
+    return currentOn.map((current, index) => (
+      <div key={index}>
+        <h3>
+          <span>
+            {current}
+            {current.nickname}
+          </span>
+          <br></br>
+        </h3>
+      </div>
+    ));
+  };
+
+  return (
+    <div className="card">
+      <div className="render-chat">{showCurrentOn()}</div>
+    </div>
+  );
   return (
     <React.Fragment>
       <Container>
