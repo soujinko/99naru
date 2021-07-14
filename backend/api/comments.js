@@ -20,13 +20,14 @@ router.delete('/:commentId', (req, res) => {
 	// dont' actually delete the comment from db but set isDelete true
 	// By deleting the comment, it may cause descendant comments to be orphans
 	// Only implement above if 대댓글 is allowed
-	console.log('여기')
-	const { postId, commentId } = req.params
+	const { commentId } = req.params
+	const { postId } = req.body
 	Comment.findByIdAndDelete(commentId).exec().then(() => {
 		Post.findById(postId).exec().then(post => {
 			post.comments.id(commentId).remove()
+			return res.sendStatus(200)
 		})
-		res.sendStatus(200)
+		return res.sendStatus(400)
 	}).catch(err => {
 		console.error(err)
 		res.status(400).json({
