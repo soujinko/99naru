@@ -140,7 +140,7 @@ const deleteCommentDB = (postId, commentId) => {
   console.log(postId, commentId)
   return function (dispatch, getState, {history}){
     axios
-    .delete(`http://localhost:3000/api/comments${commentId}`, {
+    .delete("http://localhost:3000/api/comments", {
       postId: postId,
       commentId: commentId,
       headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}
