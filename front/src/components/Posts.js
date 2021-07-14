@@ -25,11 +25,14 @@ const PostList = (props) => {
   const show_edit = () => {setShow(true)};
   const hide_edit = () => {setShow(false)};
   const user_info_id = useSelector((state) => state.user.user_id);
-  const post_user_id = props.post_data.userId._id
+  const user_info_nick = useSelector((state) => state.user.nick_name);
+  const a = useSelector((state) => state.user);
+  const post_user_id = props.post_data.userId
   const post_id = props.post_data._id
   const comments = props.post_data.comments
-  console.log(comments)
-  console.log(post_id)
+console.log(post_user_id)
+console.log(props)
+
   const modifyPost = () => {
     if (editPost===""){
         window.alert("칸 채워주세요!")
@@ -121,10 +124,9 @@ const PostList = (props) => {
           </Grid>
           <IconWrap>
             <IconClickSpan>
-             {showComment ? 
-             <IoChatbubbleEllipsesSharp onClick={hide_edit_cnt} />
-             :
-             <IoChatbubbleEllipsesSharp onClick={show_edit_cnt}/> } 
+             
+             <IoChatbubbleEllipsesSharp onClick={showComment?hide_edit_cnt:show_edit_cnt} />
+             
               
             </IconClickSpan>{props.post_data.comments.length}
           </IconWrap>

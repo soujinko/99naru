@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PostWrite from "../components/PostWrite";
-import PostList from "../components/PostList";
+// import PostList from "../components/PostList";
 import Header from "../components/Header";
 import Posts from "../components/Posts"
 import jwt_decode from "jwt-decode"; // install jwt-decode for token decode
@@ -13,12 +13,12 @@ import {actionCreators as postActions} from "../redux/modules/post";
 const PostHome = (props) => {
   const token = sessionStorage.getItem("MY_SESSION");
   const post_list = useSelector((state) => state.post.list);
-
   const decoded = jwt_decode(token);
   const nickname = decoded.nickname
   const user_id = decoded.userId
   console.log(nickname)
   console.log(user_id)
+  console.log(post_list)
 
   return (
     <React.Fragment>

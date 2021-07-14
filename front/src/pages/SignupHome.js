@@ -84,14 +84,11 @@ export default function SignupSide() {
       console.log(res.status)
       {setduplicate(res.status === 200)}
       window.alert("확인 성공!")
-	    //todo: 성공적인 응답이 오면 저 요소 선택해서 disalbed false 로 바꿔주기
     }).catch(function(err) {
     	console.error(err)
       window.alert("형식을 맞춰주세요!")
     });
   }
-
-  console.log(pwdCheck(pwd))
 
   const signup = () => {
   if (pwd==="" || pwd_check==="") {
@@ -127,7 +124,7 @@ export default function SignupSide() {
               onChange={(e) => {setId(e.target.value)}}
               variant="outlined"
               margin="normal"
-              required
+              // required
               fullWidth
               id="ID"
               label="ID"
@@ -139,7 +136,7 @@ export default function SignupSide() {
               onChange={(e) => {setNick(e.target.value)}}
               variant="outlined"
               margin="normal"
-              required
+              // required
               fullWidth
               id="nickname"
               label="NickName"
@@ -158,7 +155,7 @@ export default function SignupSide() {
               onChange={(e) => {setPwd(e.target.value)}}
               variant="outlined"
               margin="normal"
-              required
+              // required
               fullWidth
               name="password"
               label="Password"
@@ -172,7 +169,7 @@ export default function SignupSide() {
               onChange={(e) => {setPwdCheck(e.target.value)}}
               variant="outlined"
               margin="normal"
-              required
+              // required
               fullWidth
               name="password"
               label="Password"

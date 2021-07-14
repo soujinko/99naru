@@ -61,9 +61,18 @@ const modifypostDB = (postId, text) => {
     
 };
 
-const deletePostDB = (postId) => {
-  console.log(postId)
-};
+const deletePostDB = () => {
+  axios
+    .delete(`http://localhost:3000/api/posts/${props.post_data._id}`,
+    {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
+  ).then((response) => {
+    console.log(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    window.location.reload();
+  }
 
 export default handleActions(
   {
