@@ -16,7 +16,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import axios from "axios";
 
 const PostList = (props) => {
-  console.log(props)
+  const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
   const [showComment, setShowComment] = React.useState(false);
   const [editPost, setEdit] = React.useState("");
@@ -28,8 +28,6 @@ const PostList = (props) => {
   const post_user_id = props.post_data.userId._id
   const post_id = props.post_data._id
   const comments = props.post_data.comments
-  console.log(comments)
-  console.log(post_id)
   const modifyPost = () => {
     if (editPost===""){
         window.alert("칸 채워주세요!")
@@ -42,9 +40,8 @@ const PostList = (props) => {
     .then((res) => {
       console.log(res)
     });
-    // dispatch(postActions.getpostDB());
-    window.location.reload()
-    console.log(props)
+    dispatch(postActions.modifyPost(props.post_data));
+    // window.location.reload()
 }
 
   const deletePost = () => {
