@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 
 export default (req, res, next) => {
-	console.log('미들웨어입니당', req.headers.authorization) //
+	console.log('미들웨어입니당', req.path) //
   const { authorization } = req.headers;
   const [tokenType, tokenValue] = authorization.split(" ");
 

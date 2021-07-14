@@ -137,31 +137,30 @@ const addCommentDB = (postId, comments) => {
 }
 
 const deleteCommentDB = (postId, commentId) => {
-  console.log(postId, commentId)
-  return function (dispatch, getState, {history}){
-    axios
-    .delete("http://localhost:3000/api/comments", {
-      postId: postId,
-      commentId: commentId,
+	console.log(postId, commentId)
+	return function (dispatch, getState, { history }) {
+		axios.delete(`http://localhost:3000/api/comments/${commentId}`, {
+			postId: postId,
+			headers: {
+				Authorization: `Bearer ${sessionStorage.getItem('MY_SESSION')}`
+			}
+		}).then((res) => {
+			axios.get('http://localhost:3000/api/posts',
+				{
+					headers: {
+						'Authorization': `Bearer ${sessionStorage.getItem(
+							'MY_SESSION')}`
+					}
+				}
+			).then((response) => {
+				console.log(response.data)
+				dispatch(setPost(response.data))
+			}).catch((error) => {
+				console.log(error)
+			})
+		})
 
-	    headers: {
-      	Authorization: `Bearer ${sessionStorage.getItem("MY_SESSION")}`
-	    }
-    })
-    .then((res) => {
-      axios
-        .get('http://localhost:3000/api/posts',
-      {headers : {'Authorization': `Bearer ${sessionStorage.getItem("MY_SESSION")}`}}
-      ).then((response) => {
-        console.log(response.data)
-        dispatch(setPost(response.data))
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
-    
-  }
+	}
 }
 
 export default handleActions(
