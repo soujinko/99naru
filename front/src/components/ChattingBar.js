@@ -5,15 +5,16 @@ import io from "socket.io-client";
 import TextField from "@material-ui/core/TextField";
 
 const ChattingBar = (props) => {
-  const [state, setState] = useState({ message: "", name: "" });
+  const [state, setState] = useState({ message: "" });
   const [chat, setChat] = useState([]);
 
   const socketRef = useRef();
 
   useEffect(() => {
     socketRef.current = io.connect("http://localhost:3000");
-    socketRef.current.on("message", ({ name, message }) => {
-      setChat([...chat, { name, message }]);
+    socketRef.current.on("receiveMsg", ({ nickname, message, date }) => {
+      const date1 = "2021-07-14"
+      setChat([...chat, { nickname, message, date1 }]);
     });
     return () => socketRef.current.disconnect();
   }, [chat]);
@@ -23,17 +24,17 @@ const ChattingBar = (props) => {
   };
 
   const onMessageSubmit = (e) => {
-    const { name, message } = state;
-    socketRef.current.emit("message", { name, message });
+    const { message } = state;
+    socketRef.current.emit("sendMsg", { message });
     e.preventDefault();
-    setState({ message: "", name });
+    setState({ message: "" });
   };
 
   const renderChat = () => {
-    return chat.map(({ name, message }, index) => (
+    return chat.map(({ nickname, message, date1 }, index) => (
       <div key={index}>
         <h3>
-          {name}: <span>{message}</span>
+          {nickname}: <span>{message}</span><br></br><span>( {date1} )</span>
         </h3>
       </div>
     ));
@@ -41,16 +42,12 @@ const ChattingBar = (props) => {
 
   return (
     <div className="card">
+      <div className="render-chat">
+        <h1>Chat Log</h1>
+        {renderChat()}
+      </div>
       <form onSubmit={onMessageSubmit}>
         <h1>Messenger</h1>
-        <div className="name-field">
-          <TextField
-            name="name"
-            onChange={(e) => onTextChange(e)}
-            value={state.name}
-            label="Name"
-          />
-        </div>
         <div>
           <TextField
             name="message"
@@ -63,10 +60,6 @@ const ChattingBar = (props) => {
         </div>
         <button>Send Message</button>
       </form>
-      <div className="render-chat">
-        <h1>Chat Log</h1>
-        {renderChat()}
-      </div>
     </div>
   );
 
