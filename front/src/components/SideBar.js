@@ -29,6 +29,9 @@ const SideBar = (props) => {
   const goMyPage = () => {
     window.location.href = "/main/user/:id"
   }
+  const goMyChat = () => {
+    window.location.href = "/main"
+  }
   return (
     <React.Fragment>
       <Container>
@@ -39,7 +42,7 @@ const SideBar = (props) => {
           <IoPersonOutline onClick={goMyPage}/>
         </IconWrap>
         <IconWrap>
-          <IoChatboxOutline />
+          <IoChatboxOutline onClick={goMyChat}/>
         </IconWrap>
         <IconWrap>
           <IoPeopleOutline />
