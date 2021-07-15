@@ -8,7 +8,7 @@ const ChattingBar = (props) => {
   const token = sessionStorage.getItem("MY_SESSION");
   const decoded = jwt_decode(token);
   const nickname = decoded.nickname;
-  const date = new Date().toLocaleTimeString();
+  let date = new Date().toLocaleTimeString();
 
   const [state, setState] = useState({
     message: "",
@@ -36,7 +36,8 @@ const ChattingBar = (props) => {
   };
 
   const onMessageSubmit = (e) => {
-    const { message, nickname, date } = state;
+    let date = new Date().toLocaleTimeString();
+    const { message, nickname } = state;
     socketRef.current.emit("sendMsg", { message, nickname, date });
     e.preventDefault();
     setState({ message: "", nickname: nickname, date: date });
