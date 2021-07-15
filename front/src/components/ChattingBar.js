@@ -116,7 +116,7 @@ const ElMessage = styled.span`
 const SenderWrap = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   color: #212121;
 `;
