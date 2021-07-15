@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
     // 토큰 생성
     const userInfo = { userId: user._id, nickname: user.nickname };
     const options = {
-      expiresIn: "5m",
+      expiresIn: "24h",
     };
 
     const token = jwt.sign(userInfo, process.env.SECRET_KEY, options);
