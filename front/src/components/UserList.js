@@ -26,7 +26,7 @@ const UserList = (props) => {
 
   const showCurrentOn = (props) => {
     if (!currentOn.length) {
-      return <div>로딩 중...</div>;
+      return <div>Please refresh...</div>;
     }
     console.log(currentOn)
     console.log(typeof currentOn)
@@ -95,7 +95,7 @@ const UserWrap = styled.div`
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  padding: 30px 30px 60px;
+  padding: 15px 30px 60px;
   overflow-x: hidden;
   overflow-y: auto;
   ::-webkit-scrollbar {
