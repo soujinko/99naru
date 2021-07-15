@@ -12,7 +12,6 @@ const ChattingBar = (props) => {
   const nickname = decoded.nickname;
   const user_id = decoded.userId;
   const date = new Date().toLocaleTimeString();
-  console.log(date);
 
   const [state, setState] = useState({
     message: "",
@@ -52,45 +51,24 @@ const ChattingBar = (props) => {
     if (!chats.length) {
       return <div>로딩 중...</div>;
     }
+    console.log(chats);
     return chats.map((chatting, index) => (
-      <div key={index}>
-        <h3>
-          <span>
-            {chatting.nickname} {chatting.message}
-          </span>
-          <br></br>
-          <span>{chatting.date}</span>
-        </h3>
-      </div>
+      <Grid key={index}>
+        <Image shape="circle" />
+        <Text>{chatting.nickname}</Text>
+        <Text>{chatting.message}</Text>
+        <Text>{chatting.date}</Text>
+      </Grid>
     ));
   };
 
-  // const renderChat = () => {
-  //   console.log(chat);
-  //   return chat.map(({ nickname, message, date }, index) => (
-  //     <div key={index}>
-  //       <h3>
-  //         {nickname}:2 <span>{message}</span>
-  //         <br></br>
-  //         <span>( {date} )</span>
-  //       </h3>
-  //     </div>
-  //   ));
-  // };
-
   return (
-    <div className="card">
-      <div className="render-chat">
-        <h1>Chat Log</h1>
-
-        {/* <ChatLog /> */}
-        {/* {renderChat()} */}
-        {showChatLog()}
-      </div>
-      <form onSubmit={onMessageSubmit}>
-        <h1>Messenger</h1>
-        <div>
-          <TextField
+    <Container>
+      <ChattingMode>Chat</ChattingMode>
+      <ChattingList>{showChatLog()}</ChattingList>
+      <ChattingInputBox>
+        <form onSubmit={onMessageSubmit}>
+          <ChattingInput
             name="message"
             onChange={(e) => onTextChange(e)}
             value={state.message}
@@ -98,53 +76,17 @@ const ChattingBar = (props) => {
             variant="outlined"
             label="Message"
           />
-        </div>
-        {/* <button>Send Message</button> */}
-      </form>
-    </div>
-  );
-
-  return (
-    <React.Fragment>
-      <Container>
-        <ChattingMode>Chat</ChattingMode>
-        <ChattingList>
-          <Grid>
-            <Image shape="circle" />
-            <Text>오늘은 코딩왕</Text>
-            <Text>완전 유익한 정보네요!! 감사합니다~~~~~~~!</Text>
-            <Text>22:35</Text>
-          </Grid>
-          <Grid>
-            <Image shape="circle" />
-            <Text>오늘은 코딩왕</Text>
-            <Text>완전 유익한 정보네요!! 감사합니다~~~~~~~!</Text>
-            <Text>22:35</Text>
-          </Grid>
-          <Grid>
-            <Image shape="circle" />
-            <Text>오늘은 코딩왕</Text>
-            <Text>완전 유익한 정보네요!! 감사합니다~~~~~~~!</Text>
-            <Text>22:35</Text>
-          </Grid>
-          <Grid>
-            <Image shape="circle" />
-            <Text>오늘은 코딩왕</Text>
-            <Text>완전 유익한 정보네요!! 감사합니다~~~~~~~!</Text>
-            <Text>22:35</Text>
-          </Grid>
-          <Grid>
-            <Image shape="circle" />
-            <Text>오늘은 코딩왕</Text>
-            <Text>완전 유익한 정보네요!! 감사합니다~~~~~~~!</Text>
-            <Text>22:35</Text>
-          </Grid>
-        </ChattingList>
-        <ChattingInputBox>
-          <ChattingInput />
-        </ChattingInputBox>
-      </Container>
-    </React.Fragment>
+          {/* <TextField
+            name="message"
+            onChange={(e) => onTextChange(e)}
+            value={state.message}
+            id="outlined-multiline-static"
+            variant="outlined"
+            label="Message"
+          /> */}
+        </form>
+      </ChattingInputBox>
+    </Container>
   );
 };
 
