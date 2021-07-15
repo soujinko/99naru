@@ -181,12 +181,12 @@ const ChattingList = styled.div`
   box-sizing: border-box;
   background-color: #ffffff;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  padding: 30px 30px 60px;
+  padding: 30px 30px 0px;
   overflow-x: hidden;
   overflow-y: auto;
   ::-webkit-scrollbar {
