@@ -2,16 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Text, Image, Grid } from "../elements";
 import io from "socket.io-client";
-import TextField from "@material-ui/core/TextField";
 import jwt_decode from "jwt-decode";
-import ChatLog from "./ChatLog";
 
 const ChattingBar = (props) => {
   const token = sessionStorage.getItem("MY_SESSION");
   const decoded = jwt_decode(token);
   const nickname = decoded.nickname;
-  const user_id = decoded.userId;
-  const date = new Date().toLocaleTimeString();
+  let date = new Date().toLocaleTimeString();
 
   const [state, setState] = useState({
     message: "",
@@ -24,10 +21,8 @@ const ChattingBar = (props) => {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect("http://localhost:3000");
+    socketRef.current = io.connect("http://13.209.13.200");
     socketRef.current.on("chatLog", (chats) => {
-      console.log(chats);
-      console.log({ chats });
       setChats([...chats, { chats }]);
     });
     socketRef.current.on("receiveMsg", ({ nickname, message, date }) => {
@@ -41,7 +36,8 @@ const ChattingBar = (props) => {
   };
 
   const onMessageSubmit = (e) => {
-    const { message, nickname, date } = state;
+    let date = new Date().toLocaleTimeString();
+    const { message, nickname } = state;
     socketRef.current.emit("sendMsg", { message, nickname, date });
     e.preventDefault();
     setState({ message: "", nickname: nickname, date: date });
@@ -51,7 +47,6 @@ const ChattingBar = (props) => {
     if (!chats.length) {
       return <div>로딩 중...</div>;
     }
-    console.log(chats);
     return chats.map((chatting, index) => (
       <MessageWrap key={index}>
         <ImageWrap>
@@ -77,8 +72,6 @@ const ChattingBar = (props) => {
             name="message"
             onChange={(e) => onTextChange(e)}
             value={state.message}
-            id="outlined-multiline-static"
-            variant="outlined"
             label="Message"
           />
         </form>
@@ -91,11 +84,10 @@ const MessageWrap = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   justify-content: flex-start;
   width: 100%;
   height: auto;
-  margin: 0px 0px 50px 0px;
+  margin: 0px 0px 25px 0px;
   background-color: #f7f9f9;
   border-radius: 20px;
   border: 1px solid whitesmoke;
@@ -116,7 +108,7 @@ const ElMessage = styled.span`
 const SenderWrap = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   color: #212121;
 `;
@@ -133,8 +125,9 @@ const SenderTimeSpan = styled.span`
   min-width: 50px;
   width: 100%;
   text-align: left;
-  margin: 5px 0px;
+  margin: 2px 0px;
   color: #adb5bd;
+  font-size: 12px;
 `;
 
 const ImageWrap = styled.div`
@@ -181,12 +174,12 @@ const ChattingList = styled.div`
   box-sizing: border-box;
   background-color: #ffffff;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  padding: 30px 30px 60px;
+  padding: 30px 20px 0px;
   overflow-x: hidden;
   overflow-y: auto;
   ::-webkit-scrollbar {
@@ -213,7 +206,6 @@ const ChattingInput = styled.input`
   background-color: #ffffff;
   border: 1px solid #1da1f2;
   width: 100%;
-  margin-left: 10px;
   padding: 12px 15px;
   box-sizing: border-box;
   font-size: 18px;

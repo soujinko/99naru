@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import styled from "styled-components";
 import { Grid, Image, Text, Button, Input } from "../elements";
 import {actionCreators as postActions} from "../redux/modules/post";
@@ -17,8 +17,8 @@ const PostWrite = (props) => {
       return;
     }
     dispatch(postActions.addPostDB(text, data.post.list));
+    setTest("");
   }
-
 
   return (
     <React.Fragment>
@@ -29,7 +29,7 @@ const PostWrite = (props) => {
             <div>{user_nick}</div>
           </Grid>
           <Grid width="80%">
-            <Input _onChange={(e)=>{setTest(e.target.value)}} multiLine />
+            <Input value={text} _onChange={(e)=>{setTest(e.target.value)}} multiLine />
           </Grid>
         </Grid>
         <Grid right padding="0px 16px 16px 0px">
