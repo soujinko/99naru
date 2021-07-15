@@ -187,7 +187,7 @@ const ChattingList = styled.div`
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  padding: 30px 30px 0px;
+  padding: 30px 20px 0px;
   overflow-x: hidden;
   overflow-y: auto;
   ::-webkit-scrollbar {
