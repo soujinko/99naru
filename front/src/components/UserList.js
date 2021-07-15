@@ -26,12 +26,12 @@ const UserList = (props) => {
 
   const showCurrentOn = (props) => {
     if (!currentOn.length) {
-      return <div>로딩 중...</div>;
+      return <div>Please refresh...</div>;
     }
     console.log(currentOn)
     console.log(typeof currentOn)
     return currentOn.map((current, index) => (
-      <Wrapper>
+      <Wrapper margin="0px 0px 5px 0px">
         <Grid is_flex bg="#f7f9f9">
             <Grid is_flex left key={index}>
               <Image shape="circle" />
@@ -95,7 +95,7 @@ const UserWrap = styled.div`
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  padding: 30px 30px 60px;
+  padding: 13px 20px 60px 15px;
   overflow-x: hidden;
   overflow-y: auto;
   ::-webkit-scrollbar {
