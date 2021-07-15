@@ -22,7 +22,6 @@ const PostWrite = (props) => {
     setTest("");
     // window.alert("댓글 작성 완료!")
   }
-
   return (
     <React.Fragment>
       <WriteForm>
@@ -32,7 +31,7 @@ const PostWrite = (props) => {
             <div>{user_nick}</div>
           </Grid>
           <Grid width="80%">
-            <Input _onChange={(e)=>{setTest(e.target.value)}} multiLine value={text} />
+            <Input value={text} _onChange={(e)=>{setTest(e.target.value)}} multiLine />
           </Grid>
         </Grid>
         <Grid right padding="0px 16px 16px 0px">

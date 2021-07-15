@@ -70,7 +70,7 @@ export default function SignupSide() {
       return;
     }
     axios
-    .post(`http://localhost:3000/api/duplicate`, {
+    .post(`http://13.209.13.200/api/duplicate`, {
       loginId : `${id}`,
       nickname : `${nick}`,
     },)

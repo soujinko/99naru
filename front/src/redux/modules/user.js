@@ -30,7 +30,7 @@ const initialState = {
 const loginDB = (id, pwd) => {
   return function (dispatch, getState, {history}) {
     axios
-    .post("http://localhost:3000/api/signin", {
+    .post("http://13.209.13.200/api/signin", {
       loginId: id,
       password: pwd,
     })
@@ -47,7 +47,7 @@ const loginDB = (id, pwd) => {
 const signupDB = (id, pwd, nickname) => {
     return function (dispatch, getState, {history}) {
       axios
-      .post("http://localhost:3000/api/signup", {
+      .post("http://13.209.13.200/api/signup", {
         loginId: id,
         password: pwd,
         nickname: nickname,
