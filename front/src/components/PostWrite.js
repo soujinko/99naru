@@ -17,7 +17,6 @@ const PostWrite = (props) => {
       return;
     }
     dispatch(postActions.addPostDB(text, data.post.list));
-    // window.alert("댓글 작성 완료!")
     setTest("");
   }
 

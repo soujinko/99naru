@@ -18,7 +18,6 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 
 const SideBar = (props) => {
-  console.log(props)
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(userActions.logOut());
