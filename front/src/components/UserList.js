@@ -14,7 +14,7 @@ const UserList = (props) => {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect("http://localhost:3000");
+    socketRef.current = io.connect("http://13.209.13.200");
     socketRef.current.emit("join", { nickname });
     socketRef.current.on("currentOn", (currentOn) => {
       console.log(currentOn); // 이게 나와야 하나씩 나올텐데

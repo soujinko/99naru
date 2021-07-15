@@ -6,7 +6,7 @@ const ChatLog = (props) => {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect("http://localhost:3000");
+    socketRef.current = io.connect("http://13.209.13.200");
     socketRef.current.on("chatLog", (chats) => {
       console.log(chats);
       console.log({ chats });
