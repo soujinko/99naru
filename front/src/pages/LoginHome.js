@@ -48,14 +48,11 @@ export default function SignInSide() {
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
   const login = () => {
-    console.log(id,pwd)
     dispatch(userActions.loginDB(id, pwd))
   }
   const goSignup = () => {
     window.location.href = "/signup"
   }
-
-
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -63,9 +60,6 @@ export default function SignInSide() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          {/* <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar> */}
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
@@ -84,7 +78,7 @@ export default function SignInSide() {
             />
             <TextField
               onChange={(e) => {setPwd(e.target.value)}}
-
+              
               variant="outlined"
               margin="normal"
               required
