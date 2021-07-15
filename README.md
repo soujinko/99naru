@@ -11,7 +11,8 @@
 
 ##  📌Wireframe
 
-<!-- https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC -->
+https://ovenapp.io/view/x1MRnikLCmad6COoQmYy1sRBdBObMDRL#QFJkC
+
 <img src="static/wireframe.png" alt="My Image">
 
 
@@ -28,8 +29,7 @@
 
 ##  🌟 API
 
-<!-- https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0 -->
-
+https://docs.google.com/spreadsheets/d/13mMW-JBf84557AGc705Y50cH6GSldPZ9zSSz78e2UoE/edit#gid=0
 
 <table   width = "1000" style="text-align:center; " >
   <tr>
