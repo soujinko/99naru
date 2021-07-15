@@ -54,25 +54,9 @@ const UserList = (props) => {
       </UserWrap>
     </Container>
   );
-
-  return (
-    <React.Fragment>
-      <Container>
-        <ChattingMode>Users</ChattingMode>
-        <UserWrap>
-          <Wrapper>
-            <Grid is_flex>
-
-              <Grid width="0%"></Grid>
-            </Grid>
-          </Wrapper>
-        </UserWrap>
-      </Container>
-    </React.Fragment>
-  );
 };
 
-// 채팅바 전체 레이아웃
+// 유저바 전체 레이아웃
 const Container = styled.div`
   border: 3px solid #f7f9f9;
   display: flex;
@@ -84,7 +68,7 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
-// 채팅바 상단
+// 유저바 상단
 const ChattingMode = styled.div`
   display: flex;
   align-items: center;
@@ -101,7 +85,7 @@ const ChattingMode = styled.div`
   background-color: #ffffff;
 `;
 
-// 채팅바 내용 레이아웃
+// 유저바 내용 레이아웃
 const UserWrap = styled.div`
   box-sizing: border-box;
   background-color: #ffffff;
@@ -114,9 +98,14 @@ const UserWrap = styled.div`
   padding: 30px 30px 60px;
   overflow-x: hidden;
   overflow-y: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
-// 채팅 입력창
+// 유저바 입력창
 const ChattingInput = styled.input`
   background-color: #ffffff;
   border: none;

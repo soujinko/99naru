@@ -53,12 +53,16 @@ const ChattingBar = (props) => {
     }
     console.log(chats);
     return chats.map((chatting, index) => (
-      <Grid key={index}>
-        <Image shape="circle" />
-        <Text>{chatting.nickname}</Text>
-        <Text>{chatting.message}</Text>
-        <Text>{chatting.date}</Text>
-      </Grid>
+      <MessageWrap key={index}>
+        <ImageWrap>
+          <Image shape="circle" />
+        </ImageWrap>
+        <SenderWrap>
+          <SenderNameSpan>{chatting.nickname}</SenderNameSpan>
+          <ElMessage>{chatting.message}</ElMessage>
+          <SenderTimeSpan>{chatting.date}</SenderTimeSpan>
+        </SenderWrap>
+      </MessageWrap>
     ));
   };
 
@@ -69,6 +73,7 @@ const ChattingBar = (props) => {
       <ChattingInputBox>
         <form onSubmit={onMessageSubmit}>
           <ChattingInput
+            placeholder="메세지를 작성 후 엔터를 눌러주세요"
             name="message"
             onChange={(e) => onTextChange(e)}
             value={state.message}
@@ -76,19 +81,71 @@ const ChattingBar = (props) => {
             variant="outlined"
             label="Message"
           />
-          {/* <TextField
-            name="message"
-            onChange={(e) => onTextChange(e)}
-            value={state.message}
-            id="outlined-multiline-static"
-            variant="outlined"
-            label="Message"
-          /> */}
         </form>
       </ChattingInputBox>
     </Container>
   );
 };
+
+const MessageWrap = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  margin: 0px 0px 50px 0px;
+  background-color: #f7f9f9;
+  border-radius: 20px;
+  border: 1px solid whitesmoke;
+`;
+
+const ElMessage = styled.span`
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #212121;
+  margin-right: 5px;
+  padding: 15px;
+  width: auto;
+  height: auto;
+  border-radius: 20px;
+`;
+
+const SenderWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: #212121;
+`;
+
+const SenderNameSpan = styled.span`
+  min-width: 50px;
+  width: 100%;
+  text-align: left;
+  margin: 5px 0px;
+  font-weight: 600;
+`;
+
+const SenderTimeSpan = styled.span`
+  min-width: 50px;
+  width: 100%;
+  text-align: left;
+  margin: 5px 0px;
+  color: #adb5bd;
+`;
+
+const ImageWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 130%;
+  margin: 5px;
+`;
 
 // 채팅바 전체 레이아웃
 const Container = styled.div`
@@ -132,14 +189,20 @@ const ChattingList = styled.div`
   padding: 30px 30px 60px;
   overflow-x: hidden;
   overflow-y: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 // 채팅바 입력창 레이아웃
 const ChattingInputBox = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   background-color: #f5f5f5;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   height: 8%;
   opacity: 0.5;
@@ -148,12 +211,22 @@ const ChattingInputBox = styled.div`
 // 채팅 입력창
 const ChattingInput = styled.input`
   background-color: #ffffff;
-  border: none;
-  width: 90%;
+  border: 1px solid #1da1f2;
+  width: 100%;
   margin-left: 10px;
-  padding: 12px 4px;
+  padding: 12px 15px;
   box-sizing: border-box;
   font-size: 18px;
+  border-radius: 20px;
+  ::placeholder {
+    color: #212121;
+    font-size: 15px;
+    text-align: center;
+  }
+  :focus {
+    outline: none;
+    border: 2px solid #1da1f2;
+  }
 `;
 
 export default ChattingBar;
